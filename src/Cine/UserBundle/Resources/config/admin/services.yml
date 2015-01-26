@@ -1,0 +1,9 @@
+services:
+    sonata.admin.usr_user:
+        class: Cine\UserBundle\Admin\UserAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Content", label: "Utilisateur" }
+        arguments:
+            - ~
+            - Cine\UserBundle\Entity\User
+            - ~

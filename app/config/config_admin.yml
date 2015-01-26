@@ -1,0 +1,11 @@
+# Sonata Configuration
+sonata_admin:
+    templates:
+        dashboard: SonataAdminBundle:Core:dashboard.html.twig
+
+    dashboard:
+        groups:
+            cine.admin.group.content:
+                label: Utilisateurs
+                items:
+                    - sonata.admin.usr_user
