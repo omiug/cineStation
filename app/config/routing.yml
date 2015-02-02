@@ -8,6 +8,7 @@ app:
 
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+    prefix: /ident
 
 fos_user_group:
     resource: "@FOSUserBundle/Resources/config/routing/group.xml"
@@ -29,6 +30,5 @@ gallery:
 media:
     resource: '@SonataMediaBundle/Resources/config/routing/media.xml'
     prefix: /media
-    
-    
-    
+
+

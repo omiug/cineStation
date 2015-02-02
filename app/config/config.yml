@@ -2,7 +2,7 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: config_admin.yml }
- 
+
 framework:
     secret:          "%secret%"
     router:
@@ -20,6 +20,9 @@ framework:
         handler_id:  ~
     fragments:       ~
     http_method_override: true
+    translator:      { fallback: %locale% }
+    default_locale:  "%locale%"
+
 
 # Twig Configuration
 twig:
@@ -55,7 +58,7 @@ doctrine:
                 auto_mapping: true
                 mappings:
                     SonataMediaBundle: ~
-                    ApplicationSonataMediaBundle: ~                    
+                    ApplicationSonataMediaBundle: ~
 
 # Swiftmailer Configuration
 swiftmailer:
@@ -67,7 +70,7 @@ swiftmailer:
 
 # FOSUserBundle Configuration
 fos_user:
-    db_driver: orm 
+    db_driver: orm
     firewall_name: main
     user_class: Cine\UserBundle\Entity\User
 
@@ -102,7 +105,7 @@ sonata_media:
         local:
             directory:  %kernel.root_dir%/../web/uploads/media
             create:     false
-            
+
     providers:
         image:
             resizer: sonata.media.resizer.square
