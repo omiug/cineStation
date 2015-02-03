@@ -1,0 +1,26 @@
+BDD : 
+
+doctrine:schema:update --dump-sql (pour voir les requêtes)/ --force (pour appliquer les requêtes)
+
+
+Pour vider le cache : 
+
+php app/console cache:clear
+
+
+Commande GIT :
+
+	Local > Serveur
+
+git status : Voir les fichiers locaux modifié par rapport au dernier commit local
+git add ./* : Ajoute l'ensemble des fichiers en local
+git add <nom du fichier> :  Ajoute le fichier voulu dans le commit
+git commit -m "toto" : Commit l'ensemble des fichiers en local
+git push origin <nom de la branche> :  Permet de push l'ensemble des fichiers commit en local sur la branche choisi.
+
+	Serveur > Local :
+
+git fetch : permet de savoir quel branche a été changer par rapport à notre local.
+git merge origin/<nom de la branche> : Permet de recuperer l'ensemble de la branche 
+
+git rm <chemin du fichier>
