@@ -8,7 +8,7 @@ app:
 
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
-    prefix: /ident
+#    prefix: /ident
 
 fos_user_group:
     resource: "@FOSUserBundle/Resources/config/routing/group.xml"
