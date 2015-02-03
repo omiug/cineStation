@@ -29,6 +29,26 @@ class User extends BaseUser {
      */
     protected $groups;
     
+    /**
+     *
+     * @ORM\Column(name="civilite", type="string", length=3)
+     */
+    protected $civilite;
+
+
+    /**
+     *
+     * @ORM\Column(name="nom", type="string", length=255)
+     */
+    protected $nom;
+
+    
+    /**
+     *
+     * @ORM\Column(name="prenom", type="string", length=255)
+     */
+    protected $prenom;
+
     public function getId() {
         return $this->id;
     }
@@ -36,5 +56,29 @@ class User extends BaseUser {
     public function __construct() {
         parent::__construct();
         $this->groupes = new ArrayCollection();
+    }
+    
+    public function setCivilite($civ) {
+        $this->civilite = $civ;
+    }
+    
+    public function getCivilite() {
+        return $this->civilite;
+    }
+    
+    public function setNom($nom) {
+        $this->nom = $nom;
+    }
+    
+    public function getNom() {
+        return $this->nom;
+    }
+
+    public function setPrenom($prenom) {
+        $this->prenom = $prenom;
+    }
+    
+    public function getPrenom() {
+        return $this->prenom;
     }
 }
