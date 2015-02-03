@@ -1,6 +1,6 @@
 BDD : 
 
-doctrine:schema:update --dump-sql (pour voir les requêtes)/ --force (pour appliquer les requetes)
+doctrine:schema:update --dump-sql (pour voir les requêtes)/ --force (pour appliquer les requêtes)
 
 
 Pour vider le cache : 
@@ -22,3 +22,5 @@ git push origin <nom de la branche> :  Permet de push l'ensemble des fichiers co
 
 git fetch : permet de savoir quel branche a été changer par rapport à notre local.
 git merge origin/<nom de la branche> : Permet de recuperer l'ensemble de la branche 
+
+git rm <chemin du fichier>
