@@ -40,11 +40,17 @@ class UserAdmin extends Admin
                 ->end()
             ->end()
             ->tab("Droits")
-                ->with('Communauté des services')
+                ->with('Droits')
+//                    ->add('groups', 'sonata_type_model', array(
+//                        'property' => 'name',
+//                        'expanded' => true,
+//                        'multiple' => true,
+//                        'btn_add' => true
+//                    ))
                     ->add('groups', 'sonata_type_model', array(
-                        'property' => 'name',
-                        'expanded' => true,
-                        'multiple' => true,
+//                        'property' => 'name',
+//                        'expanded' => true,
+//                        'multiple' => true,
                         'btn_add' => true
                     ))
                 ->end()
