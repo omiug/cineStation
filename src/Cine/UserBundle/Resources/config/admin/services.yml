@@ -7,3 +7,14 @@ services:
             - ~
             - Cine\UserBundle\Entity\User
             - ~
+
+    sonata.admin.user_group:
+        class: Cine\UserBundle\Admin\GroupeAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Content", label: "Groupe de Roles" }
+        arguments:
+            - ~
+            - Cine\UserBundle\Entity\Groupe
+            - ~
+        calls:
+             - [ setAllSecurityRoles, [%allAdminSecurityRoles%] ]

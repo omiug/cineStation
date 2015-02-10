@@ -5,6 +5,7 @@ namespace Cine\UserBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="Cine\UserBundle\Repository\UserRepository")
@@ -12,64 +13,70 @@ use FOS\UserBundle\Model\User as BaseUser;
  */
 
 class User extends BaseUser {
-    
+
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
-    
+
     /**
-     * @ORM\ManyToMany(targetEntity="Groupe")
-     * @ORM\JoinTable(name="usr_user_groupe",
-     *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="groupe_id", referencedColumnName="id")}
-     * )
+     * @ORM\ManyToMany(targetEntity="Cine\UserBundle\Entity\Groupe", inversedBy="users")
+     * @ORM\JoinTable(name="usr_user_groupe")
      */
     protected $groups;
-    
+
     /**
+     * @var string
      *
-     * @ORM\Column(name="civilite", type="string", length=3)
+     * @ORM\Column(name="civilite", type="string", length=80, nullable=false)
      */
     protected $civilite;
 
 
     /**
      *
-     * @ORM\Column(name="nom", type="string", length=255)
+     * @var string $nom
+     * @Assert\NotBlank()
+     * @ORM\Column(name="nom", type="string", length=255,nullable=false)
      */
     protected $nom;
 
-    
     /**
-     *
-     * @ORM\Column(name="prenom", type="string", length=255)
+     * @var string $prenom
+     * @Assert\NotBlank()
+     * @ORM\Column(name="prenom", type="string", length=255, nullable=false)
      */
     protected $prenom;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Type", inversedBy="users", cascade={"all"})
+     * @ORM\JoinColumn(name="type_id", referencedColumnName="id", nullable=true)
+     */
+    private $type;
+
+    public function __construct() {
+        parent::__construct();
+        $this->groups = new ArrayCollection();
+    }
 
     public function getId() {
         return $this->id;
     }
-    
-    public function __construct() {
-        parent::__construct();
-        $this->groupes = new ArrayCollection();
-    }
-    
+
     public function setCivilite($civ) {
         $this->civilite = $civ;
     }
-    
+
     public function getCivilite() {
         return $this->civilite;
     }
-    
+
     public function setNom($nom) {
         $this->nom = $nom;
     }
-    
+
     public function getNom() {
         return $this->nom;
     }
@@ -77,8 +84,24 @@ class User extends BaseUser {
     public function setPrenom($prenom) {
         $this->prenom = $prenom;
     }
-    
+
     public function getPrenom() {
         return $this->prenom;
+    }
+
+    public function setGroups($groups) {
+        $this->groups = $groups;
+    }
+
+    public function getGroups() {
+        return $this->groups;
+    }
+
+    public function setType(Type $type) {
+        $this->type = $type;
+    }
+
+    public function getType() {
+        return $this->type;
     }
 }
