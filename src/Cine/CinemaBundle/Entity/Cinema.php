@@ -16,88 +16,180 @@ class Cinema extends BaseGroupe {
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    protected $id;    
+    protected $id;   
     /**
-     * @ORM\titre
-     * @ORM\Column(type="string")
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @var string
+     * @ORM\Column(name="civilite", type="string", length=50, nullable=false)
      */
     protected $titre; 
     /**
-     * @ORM\AnneeReal
-     * @ORM\Column(type="dateTime")
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @var dateTime
+     * @ORM\Column(name="anneereal", type="dateTime")
      */
-    protected $AnneeReal;
+    protected $anneereal;
     /**
-     * @ORM\Genres
-     * @ORM\Column(type="ManyToMany")
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\ManyToMany(targetEntity="Cine\CinemaBundle\Entity\Genre," inversedBy="cinemas")
+     * @ORM\JoinTable(name="cin_cinema_genre")
      */
-    protected $Genres;     
+    protected $genres;     
     /**
-     * @ORM\Realisateurs
-     * @ORM\Column(type="ManyToMany")
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\ManyToMany(targetEntity="Cine\CinemaBundle\Entity\Cast", inversedBy="cinemas")
+     * @ORM\JoinTable(name="cin_cinema_cast")
      */
-    protected $Realisateurs;     
+    protected $realisateurs;     
     /**
-     * @ORM\Producteurs
-     * @ORM\Column(type="ManyToMany")
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\ManyToMany(targetEntity="Cine\CinemaBundle\Entity\Cast", inversedBy="cinemas")
+     * @ORM\JoinTable(name="cin_cinema_cast")
      */
-    protected $Producteurs;     
+    protected $producteurs;     
     /**
-     * @ORM\Acteurs
-     * @ORM\Column(type="ManyToMany")
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\ManyToMany(targetEntity="Cine\CinemaBundle\Entity\Cast", inversedBy="cinemas")
+     * @ORM\JoinTable(name="cin_cinema_cast")
      */
-    protected $Acteurs;     
+    protected $acteurs;     
     /**
-     * @ORM\Pays
-     * @ORM\Column(type="string")
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\Column(name="pays", type="string", length=30, nullable=false)
      */
-    protected $Pays;     
+    protected $pays;     
     /**
-     * @ORM\Scenaristes
-     * @ORM\Column(type="array")
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\Column(name="scenaristes", type="array",  nullable=false)
      */
-    protected $Scenaristes;    
+    protected $scenaristes;    
     /**
-     * @ORM\Synopsys
-     * @ORM\Column(type="text")
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\Column(name="synopsys", type="text", length=255, nullable=false)
      */
-    protected $Synopsys;    
+    protected $synopsys;    
     /**
-     * @ORM\Budget
-     * @ORM\Column(type="float")
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\Column(name="budget", type="float")
      */
-    protected $Budget;    
+    protected $budget;    
     /**
-     * @ORM\Recompense
-     * @ORM\Column(type="array")
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\Column(name="recompenses", type="array")
      */
-    protected $Recompense;    
+    protected $recompenses;    
     /**
-     * @ORM\DureeFilm
-     * @ORM\Column(type="time")
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\Column(name="dureefilm", type="time",  nullable=false)
      */
-    protected $DureeFilm;    
+    protected $dureefilm;    
     /**
-     * @ORM\Actif
-     * @ORM\Column(type="boolean")
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\Column(name="actif", type="boolean",  nullable=false)
      */
-    protected $Actif;    
+    protected $actif;    
     
     public function getId() {
         return $this->id;
+    }
+
+    public function setTitre($titre) {
+        $this->titre = $titre;
+    }
+
+    public function getTitre() {
+        return $this->titre;
+    }
+
+    public function setAnneeReal($anneereal) {
+        $this->anneereal = $anneereal;
+    }
+
+    public function getAnneeReal() {
+        return $this->anneereal;
+    }
+
+    public function setGenres($genres) {
+        $this->genres = $genres;
+    }
+
+    public function getGenres() {
+        return $this->genres;
+    }
+
+    public function setRealisateurs($realisateurs) {
+        $this->realisateurs = $realisateurs;
+    }
+
+    public function getRealisateurs() {
+        return $this->realisateurs;
+    }
+
+    public function setProducteurs($producteurs) {
+        $this->producteurs = $producteurs;
+    }
+
+    public function getProducteurs() {
+        return $this->producteurs;
+    }
+
+    public function setActeurs($acteurs) {
+        $this->acteurs = $acteurs;
+    }
+
+    public function getActeurs() {
+        return $this->acteurs;
+    }
+
+    public function setPays($pays) {
+        $this->pays = $pays;
+    }
+
+    public function getPays() {
+        return $this->pays;
+    }
+
+    public function setScenaristes($scenaristes) {
+        $this->scenaristes = $scenaristes;
+    }
+
+    public function getScenaristes() {
+        return $this->scenaristes;
+    }
+
+    public function setSynopsys($synopsys) {
+        $this->synopsys = $synopsys;
+    }
+
+    public function getSynopsys() {
+        return $this->synopsys;
+    }
+
+    public function setBudget($budget) {
+        $this->budget = $budget;
+    }
+
+    public function getBudget() {
+        return $this->budget;
+    }
+
+    public function setRecompenses($recompenses) {
+        $this->recompenses = $recompenses;
+    }
+
+    public function getRecompenses() {
+        return $this->recompenses;
+    }
+
+    public function setDureeFilm($dureefilm) {
+        $this->dureefilm = $dureefilm;
+    }
+
+    public function getDureeFilm() {
+        return $this->dureefilm;
+    }
+
+    public function setDureeFilm($dureefilm) {
+        $this->dureefilm = $dureefilm;
+    }
+
+    public function getDureeFilm() {
+        return $this->dureefilm;
+    }
+
+    public function setActif($actif) {
+        $this->actif = $actif;
+    }
+
+    public function getActif() {
+        return $this->actif;
     }
     
     public function __construct($name, $roles = array()) {
