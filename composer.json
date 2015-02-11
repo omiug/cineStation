@@ -22,7 +22,8 @@
         "sonata-project/admin-bundle": "~2.3",
         "sonata-project/doctrine-orm-admin-bundle": "~2.3",
         "sonata-project/media-bundle": "~2.3",
-        "knplabs/knp-menu": "~2.0"
+        "knplabs/knp-menu": "~2.0",
+        "twitter/bootstrap": "2.3.*"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"
