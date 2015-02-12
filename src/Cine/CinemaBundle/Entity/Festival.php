@@ -2,7 +2,7 @@
 namespace Cine\CinemaBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\ArrayCollection
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity(repositoryClass="Cine\CinemaBundle\Repository\FestivalRepository")
@@ -16,36 +16,42 @@ class Festival
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
+
     /**
      * @ORM\Column(name="nom", type="string", length=50, nullable=false)
      */
     protected $nom;
+
     /**
      * @ORM\Column(name="dateDebut", type="dateTime", nullable=false)
      */
     protected $dateDebut;
+
     /**
      * @ORM\Column(name="dateFin", type="dateTime", nullable=false)
      */
     protected $dateFin;
+
     /**
-     * @ORM\ManyToMany(targetEntity="Cine\CinemaBundle\Entity\Film", inversedBy="festival")
+     * @ORM\ManyToMany(targetEntity="Cine\CinemaBundle\Entity\Film", inversedBy="festivals")
      * @ORM\JoinTable(name="cin_festival_film")
      */
-    protected $film;
+    protected $films;
+
     /**
-     * @ORM\ManyToMany(targetEntity="Cine\CinemaBundle\Entity\CourtMetrage", inversedBy="festival")
+     * @ORM\ManyToMany(targetEntity="Cine\CinemaBundle\Entity\CourtMetrage", inversedBy="festivals")
      * @ORM\JoinTable(name="cin_festival_courtmetrage")
      */
-    protected $courtMetrage;
+    protected $courtMetrages;
+
     /**
      * @ORM\Column(name="description", type="text", length=255, nullable=false)
      */
     protected $description;
 
     public function __construct(){
-        $this->film = new ArrayCollection();
-        $this->courtMetrage = new ArrayCollection();
+        $this->films = new ArrayCollection();
+        $this->courtMetrages = new ArrayCollection();
     }
 
     public function getId(){
@@ -73,18 +79,18 @@ class Festival
         return $this->dateFin;
     }
 
-    public function setFilm($film) {
-        $this->film = $film;
+    public function setFilms($films) {
+        $this->films = $films;
     }
-    public function getFilm() {
-        return $this->film;
+    public function getFilms() {
+        return $this->films;
     }
 
-    public function setCourtMetrage($courtMetrage) {
-        $this->courtMetrage = $courtMetrage;
+    public function setCourtMetrages($courtMetrages) {
+        $this->courtMetrages = $courtMetrages;
     }
-    public function getcourtMetrage() {
-        return $this->courtMetrage;
+    public function getcourtMetrages() {
+        return $this->courtMetrages;
     }
 
     public function setDescription($description) {

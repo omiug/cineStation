@@ -2,7 +2,7 @@
 namespace Cine\CinemaBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\ArrayCollection
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity(repositoryClass="Cine\CinemaBundle\Repository\CourtMetrageRepository")
@@ -34,8 +34,9 @@ class CourtMetrage extends cinema{
     public function setFestival($Festival){
         $this->Festival = $Festival;
     }
+
     public function getFestival(){
-        return $this->Festival
+        return $this->Festival;
     }
 
     public function setVideoCm($videocm) {

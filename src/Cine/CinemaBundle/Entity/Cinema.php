@@ -3,56 +3,67 @@
 namespace Cine\CinemaBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\ArrayCollection
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity(repositoryClass="Cine\CinemaBundle\Repository\CinemaRepository")
  * @ORM\Table(name="cin_cinema")
  */
-class Cinema extends BaseGroupe {
+class Cinema {
     
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    protected $id;   
+    protected $id;
+
     /**
      * @ORM\Column(name="civilite", type="string", length=50, nullable=false)
      */
     protected $titre; 
+
     /**
      * @ORM\Column(name="anneereal", type="int", length=4)
      */
     protected $anneereal;
+
     /**
      * @ORM\ManyToMany(targetEntity="Cine\CinemaBundle\Entity\Genre," inversedBy="cinemas")
      * @ORM\JoinTable(name="cin_cinema_genre")
      */
     protected $genres;     
+
     /**
      * @ORM\ManyToMany(targetEntity="Cine\CinemaBundle\Entity\Cast", inversedBy="realisations")
      * @ORM\JoinTable(name="cin_cinema_cast")
      */
     protected $realisateurs;     
+
     /**
      * @ORM\ManyToMany(targetEntity="Cine\CinemaBundle\Entity\Cast", inversedBy="productions")
      * @ORM\JoinTable(name="cin_cinema_cast")
      */
-    protected $producteurs;     
+
+    protected $producteurs;
+
     /**
      * @ORM\ManyToMany(targetEntity="Cine\CinemaBundle\Entity\Cast", inversedBy="roles")
      * @ORM\JoinTable(name="cin_cinema_cast")
      */
-    protected $acteurs;     
+    protected $acteurs;
+
     /**
-     * @ORM\Column(name="pays", type="string", length=30, nullable=false)
+     * @ORM\Column(name="pays", type="string", length=30)
      */
     protected $pays;     
+
     /**
-     * @ORM\Column(name="scenaristes", type="array",  nullable=false)
+     * @ORM\ManyToMany(targetEntity="Cine\CinemaBundle\Entity\Cast", inversedBy="scenaristes")
+     * @ORM\JoinTable(name="cin_cinema_cast")
      */
     protected $scenaristes;    
+
     /**
      * @ORM\Column(name="synopsys", type="text", length=255, nullable=false)
      */

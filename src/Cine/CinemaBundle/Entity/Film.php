@@ -2,7 +2,7 @@
 namespace Cine\CinemaBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\ArrayCollection
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity(repositoryClass="Cine\CinemaBundle\Repository\FilmRepository")
@@ -11,20 +11,21 @@ use Doctrine\Common\Collections\ArrayCollection
 class Film extends Cinema{
 
     protected $bandeAnnonce;
-	/**
+
+    /**
      * @ORM\ManyToMany(targetEntity="Cine\CinemaBundle\Entity\Festival", MappedBy="film")
      */
-    protected $festival;
+    protected $festivals;
 
     public function __construct(){
-    	$this->festival = new ArrayCollection();
+    	$this->festivals = new ArrayCollection();
     }
 
-    public function setFestival($festival) {
-        $this->festival = $festival;
+    public function setFestivals($festivals) {
+        $this->festivals = $festivals;
     }
-    public function getFestival() {
-        return $this->festival;
+    public function getFestivals() {
+        return $this->festivals;
     }
 
     public function setBandeAnnonce($bandeAnnonce) {
