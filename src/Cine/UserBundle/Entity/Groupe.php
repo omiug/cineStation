@@ -21,7 +21,7 @@ class Groupe extends BaseGroupe {
     protected $id;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Cine\UserBundle\Entity\User", mappedBy="groupes")
+     * @ORM\ManyToMany(targetEntity="Cine\UserBundle\Entity\User", mappedBy="groups")
      */
     protected $users;
 

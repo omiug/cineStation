@@ -13,7 +13,7 @@ class UserAdmin extends Admin
     {
         $formMapper
             ->tab("Général")
-                ->with('Identitée', array('class' => 'col-xs-6'))
+                ->with('Identitée', array('class' => 'col-xs-9'))
                     ->add('civilite', 'choice', array(
                         'label' => 'Civilite',
                         'choices' => array('Mr' => 'Mr', 'Mme' => 'Mme'),
@@ -26,13 +26,12 @@ class UserAdmin extends Admin
                     ->add('prenom', 'text', array(
                         'label' => 'Prénom'
                     ))
+                    ->add('famille', 'sonata_type_model_list', array(
+                        'label' => "Famille d'utilisateur",
+                        'required' => true
+                    ))
                 ->end()
-                ->with('Autres', array('class' => 'col-xs-6'))
-//                    ->add('familles', null, array(
-//                        'label' => "Famille d'utilisateur",
-//                        "property" => "nom",
-//                        'required' => true
-//                    ))
+                ->with('Autres', array('class' => 'col-xs-3'))
                     ->add('enabled', null, array(
                         'label' => 'Actif',
                         'required' => false
@@ -47,12 +46,6 @@ class UserAdmin extends Admin
                         'multiple' => true,
                         'btn_add' => true
                     ))
-//                    ->add('groups', 'sonata_type_model', array(
-////                        'property' => 'name',
-////                        'expanded' => true,
-////                        'multiple' => true,
-//                        'btn_add' => true
-//                    ))
                 ->end()
             ->end()
             ->tab("Accès")

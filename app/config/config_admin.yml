@@ -9,3 +9,5 @@ sonata_admin:
                 label: Utilisateurs
                 items:
                     - sonata.admin.usr_user
+                    - sonata.admin.user_group
+                    - sonata.admin.usr_famille

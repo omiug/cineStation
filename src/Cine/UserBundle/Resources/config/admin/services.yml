@@ -2,7 +2,7 @@ services:
     sonata.admin.usr_user:
         class: Cine\UserBundle\Admin\UserAdmin
         tags:
-            - { name: sonata.admin, manager_type: orm, group: "Content", label: "Utilisateur" }
+            - { name: sonata.admin, manager_type: orm, group: "Content", label: "Utilisateurs" }
         arguments:
             - ~
             - Cine\UserBundle\Entity\User
@@ -11,10 +11,19 @@ services:
     sonata.admin.user_group:
         class: Cine\UserBundle\Admin\GroupeAdmin
         tags:
-            - { name: sonata.admin, manager_type: orm, group: "Content", label: "Groupe de Roles" }
+            - { name: sonata.admin, manager_type: orm, group: "Content", label: "Groupes de Roles" }
         arguments:
             - ~
             - Cine\UserBundle\Entity\Groupe
             - ~
         calls:
              - [ setAllSecurityRoles, [%allAdminSecurityRoles%] ]
+
+    sonata.admin.usr_famille:
+        class: Cine\UserBundle\Admin\FamilleAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Content", label: "Familles" }
+        arguments:
+            - ~
+            - Cine\UserBundle\Entity\Famille
+            - ~

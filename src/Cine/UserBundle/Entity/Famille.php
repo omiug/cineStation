@@ -7,10 +7,10 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="Cine\UserBundle\Repository\TypeRepository")
- * @ORM\Table(name="usr_type")
+ * @ORM\Table(name="usr_famille")
  */
 
-class Type {
+class Famille {
 
     /**
      * @ORM\Id
@@ -28,13 +28,18 @@ class Type {
     protected $label;
 
     /**
-     * @ORM\OneToMany(targetEntity="User", mappedBy="type", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="User", mappedBy="famille", cascade={"persist"})
      */
     private $users;
 
     public function __construct()
     {
         $this->users = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return $this->label;
     }
 
     public function getId() {

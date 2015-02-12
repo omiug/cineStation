@@ -51,10 +51,10 @@ class User extends BaseUser {
     protected $prenom;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Type", inversedBy="users", cascade={"all"})
-     * @ORM\JoinColumn(name="type_id", referencedColumnName="id", nullable=true)
+     * @ORM\ManyToOne(targetEntity="Famille", inversedBy="users", cascade={"persist"})
+     * @ORM\JoinColumn(name="famille_id", referencedColumnName="id", nullable=true)
      */
-    private $type;
+    private $famille;
 
     public function __construct() {
         parent::__construct();
@@ -97,11 +97,11 @@ class User extends BaseUser {
         return $this->groups;
     }
 
-    public function setType(Type $type) {
-        $this->type = $type;
+    public function setFamille(Famille $famille) {
+        $this->famille = $famille;
     }
 
-    public function getType() {
-        return $this->type;
+    public function getFamille() {
+        return $this->famille;
     }
 }
