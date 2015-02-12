@@ -9,11 +9,11 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Serie extends Cinema{
     /**
-     * @ORM\Column(name="formatTemp", type="int", nullable=false)
+     * @ORM\Column(name="formatTemp", type="integer", nullable=false)
      */
     protected $formatTemp; 
     /**
-     * @ORM\Column(name="formatEpisode", type="int", nullable=false)
+     * @ORM\Column(name="formatEpisode", type="integer", nullable=false)
      */
     protected $formatEpisode; 
     /**

@@ -42,18 +42,18 @@ class Genre{
 
     public function setCinemas($cinemas){
         foreach ($cinemas as $cine) {
-            $this->addParticipants($cine);
+            $this->addCinema($cine);
         }
     }
     public function getCinemas() {
         return $this->cinemas;
     }
 
-    public function addCinemas(Cinema $cine) {
+    public function addCinema(Cinema $cine) {
         $this->cinemas = $cine;
     }
 
-    public function removeCinemas(Cinema $cine) {
+    public function removeCinema(Cinema $cine) {
         $this->cinemas->removeElement($cine);
     }
 }

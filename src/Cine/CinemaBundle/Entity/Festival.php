@@ -23,12 +23,12 @@ class Festival
     protected $nom;
 
     /**
-     * @ORM\Column(name="dateDebut", type="dateTime", nullable=false)
+     * @ORM\Column(name="dateDebut", type="datetime", nullable=false)
      */
     protected $dateDebut;
 
     /**
-     * @ORM\Column(name="dateFin", type="dateTime", nullable=false)
+     * @ORM\Column(name="dateFin", type="datetime", nullable=false)
      */
     protected $dateFin;
 
@@ -81,35 +81,35 @@ class Festival
 
     public function setFilms($films){
         foreach ($films as $film) {
-            $this->addParticipants($film);
+            $this->addFilm($film);
         }
     }
     public function getFilms() {
         return $this->films;
     }
 
-    public function addFilms(Film $film) {
+    public function addFilm(Film $film) {
         $this->films = $film;
     }
 
-    public function removeFilms(Film $film) {
+    public function removeFilm(Film $film) {
         $this->films->removeElement($film);
     }
 
     public function setCourtMetrages($courtMetrages){
         foreach ($courtMetrages as $cm) {
-            $this->addParticipants($cm);
+            $this->addCourtMetrage($cm);
         }
     }
     public function getCourtMetrages() {
         return $this->courtMetrages;
     }
 
-    public function addCourtMetrages(CourtMetrage $cm) {
+    public function addCourtMetrage(CourtMetrage $cm) {
         $this->courtMetrages = $cm;
     }
 
-    public function removeCourtMetrages(CourtMetrage $cm) {
+    public function removeCourtMetrage(CourtMetrage $cm) {
         $this->courtMetrages->removeElement($cm);
     }
 

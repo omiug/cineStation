@@ -24,7 +24,7 @@ class Cinema {
     protected $titre; 
 
     /**
-     * @ORM\Column(name="anneereal", type="int", length=4)
+     * @ORM\Column(name="anneereal", type="integer", length=4)
      */
     protected $anneereal;
 
@@ -114,18 +114,18 @@ class Cinema {
 
     public function setParticipants($participants){
         foreach ($participants as $membre) {
-            $this->addParticipants($membre);
+            $this->addParticipant($membre);
         }
     }
     public function getParticipants() {
         return $this->participants;
     }
 
-    public function addParticipants(Participant $membre) {
+    public function addParticipant(Participant $membre) {
         $this->participants = $membre;
     }
 
-    public function removeParticipants(Participant $membre) {
+    public function removeParticipant(Participant $membre) {
         $this->participants->removeElement($membre);
     }
 

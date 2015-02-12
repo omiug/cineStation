@@ -14,14 +14,14 @@ class CourtMetrage extends Cinema{
      */
     protected $cadreRealisation;   
     /**
-     * @ORM\ManyToMany(targetEntity="Cine\CinemaBundle\Entity\Festival", mappedBy="courtMetrage")
+     * @ORM\ManyToMany(targetEntity="Cine\CinemaBundle\Entity\Festival", mappedBy="courtMetrages")
      */
     protected $festivals;  
 
     protected $videocm; 
 
     public function __construct(){
-        $this->festival = new ArrayCollection();
+        $this->festivals = new ArrayCollection();
     }
 
     public function setCadreRealisation($cadreRealisation) {
@@ -31,12 +31,12 @@ class CourtMetrage extends Cinema{
         return $this->cadreRealisation;
     }
 
-    public function setFestival($festivals){
+    public function setFestivals($festivals){
         foreach ($festivals as $fest) {
-            $this->addParticipants($fest);
+            $this->addFestival($fest);
         }
     }
-    public function getFestival() {
+    public function getFestivals() {
         return $this->festivals;
     }
 

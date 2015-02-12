@@ -102,18 +102,18 @@ class Cast{
 
     public function setParticipants($participants){
         foreach ($participants as $membre) {
-            $this->addParticipants($membre);
+            $this->addParticipant($membre);
         }
     }
     public function getParticipants() {
         return $this->participants;
     }
 
-    public function addParticipants(Participant $membre) {
+    public function addParticipant(Participant $membre) {
         $this->participants = $membre;
     }
 
-    public function removeParticipants(Participant $membre) {
+    public function removeParticipant(Participant $membre) {
         $this->participants->removeElement($membre);
     }
 

@@ -21,12 +21,12 @@ class Film extends Cinema{
     	$this->festivals = new ArrayCollection();
     }
 
-    public function setFestival($festivals){
+    public function setFestivals($festivals){
         foreach ($festivals as $fest) {
-            $this->addParticipants($fest);
+            $this->addFestival($fest);
         }
     }
-    public function getFestival() {
+    public function getFestivals() {
         return $this->festivals;
     }
 
