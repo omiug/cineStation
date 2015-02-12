@@ -32,26 +32,12 @@ class Cinema {
      * @ORM\ManyToMany(targetEntity="Cine\CinemaBundle\Entity\Genre," inversedBy="cinemas")
      * @ORM\JoinTable(name="cin_cinema_genre")
      */
-    protected $genres;     
+    protected $genres;    
 
     /**
-     * @ORM\ManyToMany(targetEntity="Cine\CinemaBundle\Entity\Cast", inversedBy="realisations")
-     * @ORM\JoinTable(name="cin_cinema_cast")
+     * @ORM\OneToMany(targetEntity="Cine\CinemaBundle\Entity\Participant", mappedBy="cinema")
      */
-    protected $realisateurs;     
-
-    /**
-     * @ORM\ManyToMany(targetEntity="Cine\CinemaBundle\Entity\Cast", inversedBy="productions")
-     * @ORM\JoinTable(name="cin_cinema_cast")
-     */
-
-    protected $producteurs;
-
-    /**
-     * @ORM\ManyToMany(targetEntity="Cine\CinemaBundle\Entity\Cast", inversedBy="roles")
-     * @ORM\JoinTable(name="cin_cinema_cast")
-     */
-    protected $acteurs;
+    protected $participants;     
 
     /**
      * @ORM\Column(name="pays", type="string", length=30)
@@ -59,27 +45,25 @@ class Cinema {
     protected $pays;     
 
     /**
-     * @ORM\ManyToMany(targetEntity="Cine\CinemaBundle\Entity\Cast", inversedBy="scenaristes")
-     * @ORM\JoinTable(name="cin_cinema_cast")
-     */
-    protected $scenaristes;    
-
-    /**
      * @ORM\Column(name="synopsys", type="text", length=255, nullable=false)
      */
     protected $synopsys;    
+
     /**
      * @ORM\Column(name="budget", type="float")
      */
-    protected $budget;    
+    protected $budget;  
+
     /**
      * @ORM\Column(name="recompenses", type="array")
      */
-    protected $recompenses;    
+    protected $recompenses;  
+
     /**
      * @ORM\Column(name="dureeFilm", type="time",  nullable=false)
      */
-    protected $dureeFilm;    
+    protected $dureeFilm;   
+
     /**
      * @ORM\Column(name="actif", type="boolean",  nullable=false)
      */
@@ -87,9 +71,7 @@ class Cinema {
 
     public function __construct(){
         $this->genre = new ArrayCollection();
-        $this->realisateurs = new ArrayCollection();
-        $this->producteurs = new ArrayCollection();
-        $this->acteurs = new ArrayCollection();
+        $this->participant = new ArrayCollection();
     }
     
     public function getId() {
@@ -113,35 +95,38 @@ class Cinema {
     }
 
     public function setGenres($genres) {
-        $this->genres = $genres;
+        foreach ($genres as $gre) {
+            $this->addGenres($gre);
+        }
     }
 
     public function getGenres() {
         return $this->genres;
     }
 
-    public function setRealisateurs($realisateurs) {
-        $this->realisateurs = $realisateurs;
+    public function addGenres(Genre $genre) {
+        $this->genres = $genre;
     }
 
-    public function getRealisateurs() {
-        return $this->realisateurs;
+    public function removeGenres(Genre $genre) {
+        $this->genres->removeElement($genre);
     }
 
-    public function setProducteurs($producteurs) {
-        $this->producteurs = $producteurs;
+    public function setParticipants($participants){
+        foreach ($participants as $membre) {
+            $this->addParticipants($membre);
+        }
+    }
+    public function getParticipants() {
+        return $this->participants;
     }
 
-    public function getProducteurs() {
-        return $this->producteurs;
+    public function addParticipants(Participant $membre) {
+        $this->participants = $membre;
     }
 
-    public function setActeurs($acteurs) {
-        $this->acteurs = $acteurs;
-    }
-
-    public function getActeurs() {
-        return $this->acteurs;
+    public function removeParticipants(Participant $membre) {
+        $this->participants->removeElement($membre);
     }
 
     public function setPays($pays) {
@@ -150,14 +135,6 @@ class Cinema {
 
     public function getPays() {
         return $this->pays;
-    }
-
-    public function setScenaristes($scenaristes) {
-        $this->scenaristes = $scenaristes;
-    }
-
-    public function getScenaristes() {
-        return $this->scenaristes;
     }
 
     public function setSynopsys($synopsys) {

@@ -21,7 +21,7 @@ class Genre{
      */
     protected $nom;
     /**
-     * @ORM\ManyToMany(targetEntity="Cine\CinemaBundle\Entity\Cinema," MappedBy="genres")
+     * @ORM\ManyToMany(targetEntity="Cine\CinemaBundle\Entity\Cinema," mappedBy="genres")
      */
     protected $cinemas;  
 
@@ -40,10 +40,20 @@ class Genre{
         return $this->nom;
     }	
 
-    public function setCinemas(){
-    	return $this->cinemas;
+    public function setCinemas($cinemas){
+        foreach ($cinemas as $cine) {
+            $this->addParticipants($cine);
+        }
     }
-    public function getCinemas($cinemas){
-    	$this->cinemas = $cinemas;
+    public function getCinemas() {
+        return $this->cinemas;
+    }
+
+    public function addCinemas(Cinema $cine) {
+        $this->cinemas = $cine;
+    }
+
+    public function removeCinemas(Cinema $cine) {
+        $this->cinemas->removeElement($cine);
     }
 }

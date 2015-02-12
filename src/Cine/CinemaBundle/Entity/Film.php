@@ -13,7 +13,7 @@ class Film extends Cinema{
     protected $bandeAnnonce;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Cine\CinemaBundle\Entity\Festival", MappedBy="film")
+     * @ORM\ManyToMany(targetEntity="Cine\CinemaBundle\Entity\Festival", mappedBy="film")
      */
     protected $festivals;
 
@@ -21,11 +21,21 @@ class Film extends Cinema{
     	$this->festivals = new ArrayCollection();
     }
 
-    public function setFestivals($festivals) {
-        $this->festivals = $festivals;
+    public function setFestival($festivals){
+        foreach ($festivals as $fest) {
+            $this->addParticipants($fest);
+        }
     }
-    public function getFestivals() {
+    public function getFestival() {
         return $this->festivals;
+    }
+
+    public function addFestival(Festival $fest) {
+        $this->festivals = $fest;
+    }
+
+    public function removeFestival(Festival $fest) {
+        $this->festivals->removeElement($fest);
     }
 
     public function setBandeAnnonce($bandeAnnonce) {

@@ -8,15 +8,15 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @ORM\Entity(repositoryClass="Cine\CinemaBundle\Repository\CourtMetrageRepository")
  * @ORM\Table(name="cin_cm")
  */
-class CourtMetrage extends cinema{
+class CourtMetrage extends Cinema{
 	/**
      * @ORM\Column(name="cadreRealisation", type="string", nullable=false)
      */
     protected $cadreRealisation;   
     /**
-     * @ORM\ManyToMany(targetEntity="Cine\CinemaBundle\Entity\Festival", MappedBy="courtMetrage")
+     * @ORM\ManyToMany(targetEntity="Cine\CinemaBundle\Entity\Festival", mappedBy="courtMetrage")
      */
-    protected $festival;  
+    protected $festivals;  
 
     protected $videocm; 
 
@@ -31,12 +31,21 @@ class CourtMetrage extends cinema{
         return $this->cadreRealisation;
     }
 
-    public function setFestival($Festival){
-        $this->Festival = $Festival;
+    public function setFestival($festivals){
+        foreach ($festivals as $fest) {
+            $this->addParticipants($fest);
+        }
+    }
+    public function getFestival() {
+        return $this->festivals;
     }
 
-    public function getFestival(){
-        return $this->Festival;
+    public function addFestival(Festival $fest) {
+        $this->festivals = $fest;
+    }
+
+    public function removeFestival(Festival $fest) {
+        $this->festivals->removeElement($fest);
     }
 
     public function setVideoCm($videocm) {

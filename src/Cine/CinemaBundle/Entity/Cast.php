@@ -25,7 +25,7 @@ class Cast{
     /**
      * @ORM\Column(name="prenom", type="string", length=50, nullable=false)
      */
-    protected $prenom; 
+    protected $prenom;
 
     /**
      * @ORM\Column(name="pseudo", type="string", length=50)
@@ -43,24 +43,9 @@ class Cast{
     protected $nationalite;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Cine\CinemaBundle\Entity\Cinema", MappedBy="realisateurs")
+     * @ORM\OneToMany(targetEntity="Cine\CinemaBundle\Entity\Participant", mappedBy="cast")
      */
-    protected $realisations; 
-
-    /**
-     * @ORM\ManyToMany(targetEntity="Cine\CinemaBundle\Entity\Cinema", MappedBy="producteurs")
-     */
-    protected $productions;
-
-    /**
-     * @ORM\ManyToMany(targetEntity="Cine\CinemaBundle\Entity\Cinema", MappedBy="acteurs")
-     */
-    protected $roles;
-
-    /**
-     * @ORM\ManyToMany(targetEntity="Cine\CinemaBundle\Entity\Cinema", MappedBy="scenaristes")
-     */
-    protected $scenarisations;
+    protected $participants; 
 
     /**
      * @ORM\Column(name="recompenses", type="array")
@@ -68,10 +53,7 @@ class Cast{
     protected $recompenses; 
 
     public function __construct(){
-        $this->realisations = new ArrayCollection();
-        $this->productions = new ArrayCollection();
-        $this->roles = new ArrayCollection();
-        $this->scenarisations = new ArrayCollection();
+        $this->participants = new ArrayCollection();
     }
 
     public function getId() {
@@ -118,76 +100,21 @@ class Cast{
         return $this->nationalite;
     }
 
-    public function setRealisations($realisations) {
-        foreach ( $realisations as $rea ) {
-            $this->addRealisation($rea);
+    public function setParticipants($participants){
+        foreach ($participants as $membre) {
+            $this->addParticipants($membre);
         }
     }
-
-    public function getRealisations() {
-        return $this->realisations;
+    public function getParticipants() {
+        return $this->participants;
     }
 
-    public function addRealisation(Cinema $cine) {
-        $this->realisations[] = $cine;
+    public function addParticipants(Participant $membre) {
+        $this->participants = $membre;
     }
 
-    public function removeRealisation(Cinema $cine) {
-        $this->realisations->removeElement($cine);
-    }
-
-    public function setProductions($productions) {
-        foreach ( $productions as $prod ) {
-            $this->addProduction($prod);
-        }
-    }
-    
-    public function getProductions() {
-        return $this->productions;
-    }
-
-    public function addProduction(Cinema $cine) {
-        $this->productions[] = $cine;
-    }
-
-    public function removeProduction(Cinema $cine) {
-        $this->productions->removeElement($cine);
-    }
-
-    public function setRoles($roles) {
-        foreach ( $roles as $role ) {
-            $this->addRole($role);
-        }
-    }
-
-    public function getRoles() {
-        return $this->roles;
-    }
-
-    public function addRole(Cinema $cine) {
-        $this->roles[] = $cine;
-    }
-
-    public function removeRole(Cinema $cine) {
-        $this->roles->removeElement($cine);
-    }
-
-    public function setScenarisations($scenarisations) {
-        foreach ( $scenarisations as $senar ) {
-            $this->addScenarisation($senar);
-        }
-    }
-
-    public function getScenarisations() {
-        return $this->scenarisations;
-    }
-
-    public function addScenarisation(Cinema $cine) {
-        $this->scenarisations[] = $cine;
-    }
-
-    public function removeScenarisation(Cinema $cine) {
-        $this->scenarisations->removeElement($cine);
+    public function removeParticipants(Participant $membre) {
+        $this->participants->removeElement($membre);
     }
 
     public function setRecompenses($recompenses) {

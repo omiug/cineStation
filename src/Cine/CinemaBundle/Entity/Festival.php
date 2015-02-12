@@ -79,18 +79,38 @@ class Festival
         return $this->dateFin;
     }
 
-    public function setFilms($films) {
-        $this->films = $films;
+    public function setFilms($films){
+        foreach ($films as $film) {
+            $this->addParticipants($film);
+        }
     }
     public function getFilms() {
         return $this->films;
     }
 
-    public function setCourtMetrages($courtMetrages) {
-        $this->courtMetrages = $courtMetrages;
+    public function addFilms(Film $film) {
+        $this->films = $film;
     }
-    public function getcourtMetrages() {
+
+    public function removeFilms(Film $film) {
+        $this->films->removeElement($film);
+    }
+
+    public function setCourtMetrages($courtMetrages){
+        foreach ($courtMetrages as $cm) {
+            $this->addParticipants($cm);
+        }
+    }
+    public function getCourtMetrages() {
         return $this->courtMetrages;
+    }
+
+    public function addCourtMetrages(CourtMetrage $cm) {
+        $this->courtMetrages = $cm;
+    }
+
+    public function removeCourtMetrages(CourtMetrage $cm) {
+        $this->courtMetrages->removeElement($cm);
     }
 
     public function setDescription($description) {
