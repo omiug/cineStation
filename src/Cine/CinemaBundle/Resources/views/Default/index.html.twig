@@ -1,5 +1,16 @@
 {% extends "CineCinemaBundle::layout.html.twig" %}
 
 {% block cwdcinema_body %}
-    <h1>ok</h1>
+    {% set user = app.security.getToken().getUser() %}
+    {% if user and is_granted('IS_AUTHENTICATED_FULLY') %}
+    <h1>{{ user.username }}</h1>
+    {% endif %}
+    <div class="row">
+        <div class="col-xs-6">
+            test
+        </div>
+        <div class="col-xs-6">
+            kikou
+        </div>
+    </div>
 {% endblock %}
