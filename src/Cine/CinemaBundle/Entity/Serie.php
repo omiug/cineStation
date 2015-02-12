@@ -38,4 +38,3 @@ class Serie extends Cinema{
         return $this->saison;
     }
 }
-?>

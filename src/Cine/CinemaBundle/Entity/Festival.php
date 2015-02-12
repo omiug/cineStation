@@ -82,7 +82,5 @@ class Festival
     }
     public function getDescription() {
         return $this->description;
-    }
-	
+    }	
 }
-?>

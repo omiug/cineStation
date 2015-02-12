@@ -16,4 +16,3 @@ class Film extends Cinema{
         return $this->bandeannonce;
     }
 }
-?>

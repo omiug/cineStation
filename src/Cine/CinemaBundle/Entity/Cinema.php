@@ -176,14 +176,6 @@ class Cinema extends BaseGroupe {
         return $this->dureefilm;
     }
 
-    public function setDureeFilm($dureefilm) {
-        $this->dureefilm = $dureefilm;
-    }
-
-    public function getDureeFilm() {
-        return $this->dureefilm;
-    }
-
     public function setActif($actif) {
         $this->actif = $actif;
     }
@@ -191,10 +183,4 @@ class Cinema extends BaseGroupe {
     public function getActif() {
         return $this->actif;
     }
-    
-    public function __construct($name, $roles = array()) {
-        parent::__construct($name, $roles);
-    }
 }
-
-?>

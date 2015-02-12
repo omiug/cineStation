@@ -32,17 +32,17 @@ class Cast{
      */
     protected $nationalite; 
     /**
-     * @ORM\ManyToMany(targetEntity="Cine\CinemaBundle\Entity\Cast", inversedBy="cinemas")
+     * @ORM\ManyToMany(targetEntity="Cine\CinemaBundle\Entity\Cast")
      * @ORM\JoinTable(name="cin_cinema_cast")
      */
     protected $realisations; 
     /**
-     * @ORM\ManyToMany(targetEntity="Cine\CinemaBundle\Entity\Cast", inversedBy="cinemas")
+     * @ORM\ManyToMany(targetEntity="Cine\CinemaBundle\Entity\Cast")
      * @ORM\JoinTable(name="cin_cinema_cast")
      */
     protected $productions;
     /**
-     * @ORM\ManyToMany(targetEntity="Cine\CinemaBundle\Entity\Cast", inversedBy="cinemas")
+     * @ORM\ManyToMany(targetEntity="Cine\CinemaBundle\Entity\Cast")
      * @ORM\JoinTable(name="cin_cinema_cast")
      */
     protected $roles;
@@ -128,6 +128,4 @@ class Cast{
     public function getRecompenses() {
         return $this->recompenses;
     }
-
 }
-?>

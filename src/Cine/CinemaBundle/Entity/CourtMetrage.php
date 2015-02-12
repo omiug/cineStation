@@ -24,7 +24,4 @@ class CourtMetrage extends cinema{
     public function getVideoCm() {
         return $this->videocm;
     }
-
-
 }
-?>
