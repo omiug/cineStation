@@ -2,7 +2,12 @@
 namespace Cine\CinemaBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection
 
+/**
+ * @ORM\Entity(repositoryClass="Cine\CinemaBundle\Repository\FestivalRepository")
+ * @ORM\Table(name="cin_festival")
+ */
 class Festival
 {
 	/**
@@ -16,27 +21,32 @@ class Festival
      */
     protected $nom;
     /**
-     * @ORM\Column(name="datedebut", type="dateTime", nullable=false)
+     * @ORM\Column(name="dateDebut", type="dateTime", nullable=false)
      */
-    protected $datedebut;
+    protected $dateDebut;
     /**
-     * @ORM\Column(name="datefin", type="dateTime", nullable=false)
+     * @ORM\Column(name="dateFin", type="dateTime", nullable=false)
      */
-    protected $datefin;
+    protected $dateFin;
     /**
-     * @ORM\ManyToMany(targetEntity="Cine\CinemaBundle\Entity\Film")
-     * @ORM\JoinTable(name="cin_cinema_film")
+     * @ORM\ManyToMany(targetEntity="Cine\CinemaBundle\Entity\Film", inversedBy="festival")
+     * @ORM\JoinTable(name="cin_festival_film")
      */
     protected $film;
     /**
-     * @ORM\ManyToMany(targetEntity="Cine\CinemaBundle\Entity\CourtMetrage")
-     * @ORM\JoinTable(name="cin_cinema_courtmetrage")
+     * @ORM\ManyToMany(targetEntity="Cine\CinemaBundle\Entity\CourtMetrage", inversedBy="festival")
+     * @ORM\JoinTable(name="cin_festival_courtmetrage")
      */
-    protected $courtmetrage;
+    protected $courtMetrage;
     /**
      * @ORM\Column(name="description", type="text", length=255, nullable=false)
      */
     protected $description;
+
+    public function __construct(){
+        $this->film = new ArrayCollection();
+        $this->courtMetrage = new ArrayCollection();
+    }
 
     public function getId(){
     	return $this->id;
@@ -49,18 +59,18 @@ class Festival
         return $this->nom;
     }
 
-    public function setDateDebut($datedebut) {
-        $this->datedebut = $datedebut;
+    public function setDateDebut($dateDebut) {
+        $this->dateDebut = $dateDebut;
     }
     public function getDateDebut() {
-        return $this->datedebut;
+        return $this->dateDebut;
     }
 
-    public function setDateFin($datefin) {
-        $this->datefin = $datefin;
+    public function setDateFin($dateFin) {
+        $this->dateFin = $dateFin;
     }
     public function getDateFin() {
-        return $this->datefin;
+        return $this->dateFin;
     }
 
     public function setFilm($film) {
@@ -70,11 +80,11 @@ class Festival
         return $this->film;
     }
 
-    public function setCourtMetrage($courtmetrage) {
-        $this->courtmetrage = $courtmetrage;
+    public function setCourtMetrage($courtMetrage) {
+        $this->courtMetrage = $courtMetrage;
     }
-    public function getCourtMetrage() {
-        return $this->courtmetrage;
+    public function getcourtMetrage() {
+        return $this->courtMetrage;
     }
 
     public function setDescription($description) {
