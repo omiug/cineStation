@@ -2,7 +2,12 @@
 namespace Cine\CinemaBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection
 
+/**
+ * @ORM\Entity(repositoryClass="Cine\CinemaBundle\Repository\CastRepository")
+ * @ORM\Table(name="cin_cast")
+ */
 class Cast{
 
 	/**
@@ -24,26 +29,23 @@ class Cast{
      */
     protected $pseudo; 
 	/**
-     * @ORM\Column(name="datenaissance", type="string", length=50, nullable=false)
+     * @ORM\Column(name="dateNaissance", type="string", length=50, nullable=false)
      */
-    protected $datenaissance; 
+    protected $dateNaissance; 
 	/**
      * @ORM\Column(name="nationalite", type="string", length=50, nullable=false)
      */
     protected $nationalite; 
     /**
-     * @ORM\ManyToMany(targetEntity="Cine\CinemaBundle\Entity\Cast")
-     * @ORM\JoinTable(name="cin_cinema_cast")
+     * @ORM\ManyToMany(targetEntity="Cine\CinemaBundle\Entity\Cinema", MappedBy="realisateurs")
      */
     protected $realisations; 
     /**
-     * @ORM\ManyToMany(targetEntity="Cine\CinemaBundle\Entity\Cast")
-     * @ORM\JoinTable(name="cin_cinema_cast")
+     * @ORM\ManyToMany(targetEntity="Cine\CinemaBundle\Entity\Cinema", MappedBy="producteurs")
      */
     protected $productions;
     /**
-     * @ORM\ManyToMany(targetEntity="Cine\CinemaBundle\Entity\Cast")
-     * @ORM\JoinTable(name="cin_cinema_cast")
+     * @ORM\ManyToMany(targetEntity="Cine\CinemaBundle\Entity\Cinema", MappedBy="acteurs")
      */
     protected $roles;
     /**
@@ -54,6 +56,12 @@ class Cast{
      * @ORM\Column(name="recompenses", type="array")
      */
     protected $recompenses; 
+
+    public function __construct(){
+        $this->realisations = new ArrayCollection();
+        $this->productions = new ArrayCollection();
+        $this->roles = new ArrayCollection();
+    }
 
     public function getId() {
         return $this->id;
@@ -80,11 +88,11 @@ class Cast{
         return $this->pseudo;
     }
 
-    public function setDateNaissance($datenaissance) {
-        $this->datenaissance = $datenaissance;
+    public function setDateNaissance($dateNaissance) {
+        $this->dateNaissance = $dateNaissance;
     }
-    public function getDateNaissance() {
-        return $this->datenaissance;
+    public function getdateNaissance() {
+        return $this->dateNaissance;
     }
 
     public function setNationalite($nationalite) {

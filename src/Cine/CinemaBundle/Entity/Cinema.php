@@ -3,12 +3,12 @@
 namespace Cine\CinemaBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection
 
 /**
- * @ORM\Entity(repositoryClass="Cine\CinemaBundle\Repository\GroupeRepository")
- * @ORM\Table(name="usr_groupe")
+ * @ORM\Entity(repositoryClass="Cine\CinemaBundle\Repository\CinemaRepository")
+ * @ORM\Table(name="cin_cinema")
  */
-
 class Cinema extends BaseGroupe {
     
     /**
@@ -18,13 +18,11 @@ class Cinema extends BaseGroupe {
      */
     protected $id;   
     /**
-     * @var string
      * @ORM\Column(name="civilite", type="string", length=50, nullable=false)
      */
     protected $titre; 
     /**
-     * @var dateTime
-     * @ORM\Column(name="anneereal", type="dateTime")
+     * @ORM\Column(name="anneereal", type="int", length=4)
      */
     protected $anneereal;
     /**
@@ -33,17 +31,17 @@ class Cinema extends BaseGroupe {
      */
     protected $genres;     
     /**
-     * @ORM\ManyToMany(targetEntity="Cine\CinemaBundle\Entity\Cast", inversedBy="cinemas")
+     * @ORM\ManyToMany(targetEntity="Cine\CinemaBundle\Entity\Cast", inversedBy="realisations")
      * @ORM\JoinTable(name="cin_cinema_cast")
      */
     protected $realisateurs;     
     /**
-     * @ORM\ManyToMany(targetEntity="Cine\CinemaBundle\Entity\Cast", inversedBy="cinemas")
+     * @ORM\ManyToMany(targetEntity="Cine\CinemaBundle\Entity\Cast", inversedBy="productions")
      * @ORM\JoinTable(name="cin_cinema_cast")
      */
     protected $producteurs;     
     /**
-     * @ORM\ManyToMany(targetEntity="Cine\CinemaBundle\Entity\Cast", inversedBy="cinemas")
+     * @ORM\ManyToMany(targetEntity="Cine\CinemaBundle\Entity\Cast", inversedBy="roles")
      * @ORM\JoinTable(name="cin_cinema_cast")
      */
     protected $acteurs;     
@@ -68,13 +66,20 @@ class Cinema extends BaseGroupe {
      */
     protected $recompenses;    
     /**
-     * @ORM\Column(name="dureefilm", type="time",  nullable=false)
+     * @ORM\Column(name="dureeFilm", type="time",  nullable=false)
      */
-    protected $dureefilm;    
+    protected $dureeFilm;    
     /**
      * @ORM\Column(name="actif", type="boolean",  nullable=false)
      */
     protected $actif;    
+
+    public function __construct(){
+        $this->genre = new ArrayCollection();
+        $this->realisateurs = new ArrayCollection();
+        $this->producteurs = new ArrayCollection();
+        $this->acteurs = new ArrayCollection();
+    }
     
     public function getId() {
         return $this->id;
