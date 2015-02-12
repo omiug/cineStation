@@ -29,7 +29,7 @@ class Cinema {
     protected $anneereal;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Cine\CinemaBundle\Entity\Genre," inversedBy="cinemas")
+     * @ORM\ManyToMany(targetEntity="Cine\CinemaBundle\Entity\Genre", inversedBy="cinemas")
      * @ORM\JoinTable(name="cin_cinema_genre")
      */
     protected $genres;    

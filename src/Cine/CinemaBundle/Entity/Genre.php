@@ -21,7 +21,7 @@ class Genre{
      */
     protected $nom;
     /**
-     * @ORM\ManyToMany(targetEntity="Cine\CinemaBundle\Entity\Cinema," mappedBy="genres")
+     * @ORM\ManyToMany(targetEntity="Cine\CinemaBundle\Entity\Cinema", mappedBy="genres")
      */
     protected $cinemas;  
 
