@@ -24,9 +24,9 @@ class Cinema {
     protected $titre; 
 
     /**
-     * @ORM\Column(name="anneereal", type="integer", length=4)
+     * @ORM\Column(name="anneeReal", type="integer", length=4)
      */
-    protected $anneereal;
+    protected $anneeReal;
 
     /**
      * @ORM\ManyToMany(targetEntity="Cine\CinemaBundle\Entity\Genre", inversedBy="cinemas")
@@ -45,9 +45,9 @@ class Cinema {
     protected $pays;     
 
     /**
-     * @ORM\Column(name="synopsys", type="text", length=255, nullable=false)
+     * @ORM\Column(name="synopsis", type="text", length=255, nullable=false)
      */
-    protected $synopsys;    
+    protected $synopsis;    
 
     /**
      * @ORM\Column(name="budget", type="float")
@@ -65,7 +65,7 @@ class Cinema {
     protected $dureeFilm;   
 
     /**
-     * @ORM\Column(name="actif", type="boolean",  nullable=false)
+     * @ORM\Column(name="actif", type="boolean")
      */
     protected $actif;    
 
@@ -86,12 +86,12 @@ class Cinema {
         return $this->titre;
     }
 
-    public function setAnneeReal($anneereal) {
-        $this->anneereal = $anneereal;
+    public function setAnneeReal($anneeReal) {
+        $this->anneeReal = $anneeReal;
     }
 
     public function getAnneeReal() {
-        return $this->anneereal;
+        return $this->anneeReal;
     }
 
     public function setGenres($genres) {
@@ -137,12 +137,12 @@ class Cinema {
         return $this->pays;
     }
 
-    public function setSynopsys($synopsys) {
-        $this->synopsys = $synopsys;
+    public function setSynopsis($synopsis) {
+        $this->synopsis = $synopsis;
     }
 
-    public function getSynopsys() {
-        return $this->synopsys;
+    public function getSynopsis() {
+        return $this->synopsis;
     }
 
     public function setBudget($budget) {
@@ -161,12 +161,12 @@ class Cinema {
         return $this->recompenses;
     }
 
-    public function setDureeFilm($dureefilm) {
-        $this->dureefilm = $dureefilm;
+    public function setDureeFilm($dureeFilm) {
+        $this->dureeFilm = $dureeFilm;
     }
 
     public function getDureeFilm() {
-        return $this->dureefilm;
+        return $this->dureeFilm;
     }
 
     public function setActif($actif) {

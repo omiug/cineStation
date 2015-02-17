@@ -4,6 +4,16 @@ sonata_admin:
         dashboard: SonataAdminBundle:Core:dashboard.html.twig
 
     dashboard:
+        # blocks:
+        #     -
+        #         position: right
+        #         type: sonata.block.service.text
+        #         settings:
+        #             content: >
+        #                 <h2> Bienvenue dans la page d'administration de CineStation </h2>
+        #                 <p> Selon que vous soyez Administrateur ou Rédacteur vous avez accès 
+        #                 à différents modules qui vous permettrons d'administrer le site.</p>
+        #                 <p> Pour toutes questions n'hésiter pas à nous contacter : CineStation@gmail.com</p>
         groups:
             cine.admin.group.content:
                 label: Utilisateurs
@@ -11,3 +21,10 @@ sonata_admin:
                     - sonata.admin.usr_user
                     - sonata.admin.user_group
                     - sonata.admin.usr_famille
+            cine.admin.group.fiche:
+                label: Cinema
+                items:
+                    - sonata.admin.cin_film
+                    - sonata.admin.cin_serie
+                    - sonata.admin.cin_cm
+                    - sonata.admin.cin_fest

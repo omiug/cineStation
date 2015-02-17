@@ -1,4 +1,36 @@
 services:
-#    cine_cinema.example:
-#        class: Cine\CinemaBundle\Example
-#        arguments: [@service_id, "plain_value", %parameter%]
+    sonata.admin.cin_film:
+        class: Cine\CinemaBundle\Admin\FilmAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Fiche", label: "Film" }
+        arguments:
+            - ~
+            - Cine\CinemaBundle\Entity\Film
+            - ~
+
+    sonata.admin.cin_serie:
+        class: Cine\CinemaBundle\Admin\SerieAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Fiche", label: "Serie" }
+        arguments:
+            - ~
+            - Cine\CinemaBundle\Entity\Serie
+            - ~
+
+    sonata.admin.cin_cm:
+        class: Cine\CinemaBundle\Admin\CourtMetrageAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Fiche", label: "Court Metrage" }
+        arguments:
+            - ~
+            - Cine\CinemaBundle\Entity\CourtMetrage
+            - ~
+
+    sonata.admin.cin_fest:
+        class: Cine\CinemaBundle\Admin\FestivalAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Fiche", label: "Festival" }
+        arguments:
+            - ~
+            - Cine\CinemaBundle\Entity\Festival
+            - ~
