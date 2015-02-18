@@ -12,6 +12,5 @@ parameters:
     mailer_password: null
     locale: fr
     secret: ThisTokenIsNotSoSecretChangeIt
-
     allAdminSecurityRoles:
         - ROLE_USER
