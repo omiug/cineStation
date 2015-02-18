@@ -14,5 +14,3 @@
 /composer.phar
 /nbproject/
 /Commande.txt
-app/config/parameters.yml
-composer.lock
