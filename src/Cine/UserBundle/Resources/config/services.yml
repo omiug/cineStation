@@ -1,1 +1,11 @@
 services:
+    cine_user.registration.form.type:
+        class: Cine\UserBundle\Form\Type\RegistrationFormType
+        tags:
+            - { name: form.type, alias: cine_user_registration }
+        arguments: [Cine\UserBundle\Entity\User]
+
+    cine_user.registration.listener:
+        class: Cine\UserBundle\Service\RegisterListener
+        tags:
+              - { name: kernel.event_listener, event: fos_user.registration.completed, method: registerCompleted }
