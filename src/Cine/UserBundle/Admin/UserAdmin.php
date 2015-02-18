@@ -57,7 +57,8 @@ class UserAdmin extends Admin
                         'label' => 'E-mail'
                     ))
                     ->add('plainPassword', 'text', array(
-                        'label' => 'Mot de passe'
+                        'label' => 'Mot de passe',
+                        'required' => false
                     ))
                 ->end()
             ->end();

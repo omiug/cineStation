@@ -51,4 +51,11 @@ class GroupeAdmin extends Admin
         ;
     }
 
+    public function getNewInstance()
+    {
+        $class = $this->getClass();
+
+        return new $class('', array());
+    }
+
 }
