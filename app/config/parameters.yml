@@ -14,3 +14,4 @@ parameters:
     secret: ThisTokenIsNotSoSecretChangeIt
     allAdminSecurityRoles:
         - ROLE_USER
+        - ROLE_ADMIN
