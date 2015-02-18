@@ -14,3 +14,4 @@ parameters:
 
     allAdminSecurityRoles:
         - ROLE_USER
+        - ROLE_ADMIN

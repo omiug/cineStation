@@ -1,0 +1,13 @@
+parameters:
+    sonata.media.admin.media.class: Application\Sonata\MediaBundle\Admin\MediaAdmin
+
+services:
+    cine.admin.media:
+        class: %sonata.media.admin.media.class%
+        arguments:
+            - ~
+            - Application\Sonata\MediaBundle\Entity\Media
+            - SonataMediaBundle:MediaAdmin
+            - @sonata.media.pool
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: admin, label: Médias}

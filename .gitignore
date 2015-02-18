@@ -1,5 +1,7 @@
 /web/bundles/
 /app/bootstrap.php.cache
+/app/check.php
+/app/SymfonyRequirements.php
 /app/cache/*
 /app/logs/*
 !app/cache/.gitkeep
@@ -7,7 +9,10 @@
 /app/phpunit.xml
 /build/
 /vendor/
+/web/config.php
 /bin/
 /composer.phar
 /nbproject/
 /Commande.txt
+app/config/parameters.yml
+composer.lock
