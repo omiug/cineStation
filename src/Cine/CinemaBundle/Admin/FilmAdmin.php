@@ -12,7 +12,7 @@ class FilmAdmin extends Admin
 	protected function configureFormFields(FormMapper $FormMapper){
 		$FormMapper
 			->tab("Description")
-				->with('Synopsis', array('class' => 'col-xs-4'))
+				->with('Synopsis', array('class' => 'col-xs-5'))
 					->add('titre', 'text', array(
 						'label' => 'Titre du Film',
 						'required' => true
@@ -22,14 +22,11 @@ class FilmAdmin extends Admin
 						'required' => true
 					))
 				->end()
-				->with('Poster', array('class' => 'col-xs-4'))
-					->add('poster', 'text', array(
-						'label' => 'URL de l\'image',
-						'required' => true
-					))
-				->end()
-				->with('BandeAnnonce', array('class' => 'col-xs-4'))
-					->add('bandeAnnonce', 'text', array(
+				->with('Médias', array('class' => 'col-xs-7'))
+					->add('poster', 'sonata_type_model_list', array('required' => false), array(
+                        'link_parameters' => array('context' => 'default'),
+                    ))
+                    ->add('bandeAnnonce', 'text', array(
 						'label' => 'URL de la bande annonce',
 						'required' => true
 					))

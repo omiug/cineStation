@@ -18,7 +18,9 @@ class Film extends Cinema{
     protected $festivals;
 
     /**
-     * @ORM\Column(name="poster", type="text", nullable=false)
+     *
+     * @ORM\ManyToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media",  cascade={"persist"})
+     *
      */
     protected $poster;
 

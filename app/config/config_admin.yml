@@ -11,7 +11,7 @@ sonata_admin:
         #         settings:
         #             content: >
         #                 <h2> Bienvenue dans la page d'administration de CineStation </h2>
-        #                 <p> Selon que vous soyez Administrateur ou Rédacteur vous avez accès 
+        #                 <p> Selon que vous soyez Administrateur ou Rédacteur vous avez accès
         #                 à différents modules qui vous permettrons d'administrer le site.</p>
         #                 <p> Pour toutes questions n'hésiter pas à nous contacter : CineStation@gmail.com</p>
         groups:
@@ -28,3 +28,8 @@ sonata_admin:
                     - sonata.admin.cin_serie
                     - sonata.admin.cin_cm
                     - sonata.admin.cin_fest
+            cwd.admin.group.media:
+                label: Médias
+                items:
+                    - cine.admin.media
+                    - sonata.media.admin.gallery
