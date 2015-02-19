@@ -11,14 +11,42 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
-        <div class="container">
-            <div id="header">
+        <div id="wrapper">
+            <div class="container">
+                <div id="header">
+                {% block header %}
+                    {% set user = app.security.getToken().getUser() %}
+                    {% if user and is_granted('IS_AUTHENTICATED_FULLY') %}
+                        <div id="user-block">
+                            <a href="{{ path('fos_user_profile_edit') }}" title="">
+                                <img src="{{ asset('images/icons/account.png') }}" alt=""/>
+                                {{ user.getUsername() }}
+                            </a>
+                            <a href="{{ path('fos_user_security_logout')}}" title="">
+                                <img src="{{ asset('images/icons/disconnect.png') }}" alt=""/>
+                                Se déconnecter
+                            </a>
+                        </div>
+                    {% else %}
+                        <div id="user-block">
+                            <a href="{{ path('fos_user_security_login')}}" title="">
+                                Se connecter
+                            </a>
+                        </div>
+                    {% endif %}
+                    <a id="site-name" href="#">
+                        Ciné' Station
+                    </a>
+                {% endblock %}
+
+                </div>
+                <div id="content">
+                    {% block body %}{% endblock %}
+                </div>
+                <div id="footer">
+                </div>
             </div>
-            <div id="content">
-                {% block body %}{% endblock %}
-            </div>
-            <div id="footer">
-            </div>
+        </div>
         {% block javascripts %}
             <script src="{{ asset("bootstrap-3.3.2/dist/js/bootstrap.min.js") }}"></script>
         {% endblock %}

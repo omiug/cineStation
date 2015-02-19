@@ -1,11 +1,35 @@
 @import '../../../web/bootstrap-3.3.2/less/bootstrap.less';
 
-#header {
-    height: 250px;
-    background-color: red;
-}
+@cine-gray: #808080;
 
-#footer {
-    height: 20px;
-    background-color: blue;
+#wrapper {
+    #header {
+        background-color: #333333;
+        color: #ffffff;
+        height: 110px;
+        min-width: 550px;
+        padding: 20px 40px 0;
+
+        a {
+            color: #ffffff;
+        }
+        #user-block {
+            text-align: right;
+
+            a {
+                color: @cine-gray;
+                margin-left: 40px;
+            }
+        }
+
+        #site-name {
+            font-size: 40px;
+            text-decoration: none;
+        }
+    }
+
+    #footer {
+        border-top: 1px solid @cine-gray;
+        padding: 40px 40px 0;
+    }
 }
