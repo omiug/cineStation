@@ -1,6 +1,6 @@
 {% extends "CineCinemaBundle::layout.html.twig" %}
 
-{% block cwdcinema_body %}
+{% block cinecinema_body %}
     {% set user = app.security.getToken().getUser() %}
     {% if user and is_granted('IS_AUTHENTICATED_FULLY') %}
     <h1>{{ user.username }}</h1>

@@ -1,0 +1,23 @@
+services:
+    sonata.admin.cms_menu:
+        class: Cine\CmsBundle\Admin\MenuAdmin
+        tags:
+             - { name: sonata.admin, manager_type: orm, group: "Content", label: "Menu" }
+        arguments:
+             - ~
+             - Cine\CmsBundle\Entity\Menu
+             - ~
+#        calls:
+#            - [ addChild, [ @sonata.admin.cms_menu_item ] ]
+
+    sonata.admin.cms_menu_item:
+        class: Cine\CmsBundle\Admin\MenuItemAdmin
+        tags:
+             - { name: sonata.admin, manager_type: orm, group: "Content", label: "Elements menu" }
+        arguments:
+             - ~
+             - Cine\CmsBundle\Entity\MenuItem
+             - ~
+        calls:
+            - [ setEntityManager, [ @doctrine.orm.entity_manager ]]
+            - [ setAllSecurityRoles, [%allAdminSecurityRoles%] ]

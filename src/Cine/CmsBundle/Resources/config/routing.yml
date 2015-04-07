@@ -1,0 +1,11 @@
+admin_get_menu_items_tree:
+    pattern: /get_menu_items_tree/{id}
+    defaults: { _controller: CineCmsBundle:JsTree:getMenuItemsTree }
+    requirements:
+        id: ".+"
+
+admin_move_menu_items_tree:
+    pattern: /admin_move_menu_items_tree/{id}/{parent}/{position}
+    defaults: { _controller: CineCmsBundle:JsTree:moveMenuItems }
+    requirements:
+        id: ".+"

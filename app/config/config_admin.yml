@@ -21,6 +21,10 @@ sonata_admin:
                     - sonata.admin.usr_user
                     - sonata.admin.user_group
                     - sonata.admin.usr_famille
+            cine.admin.group.cms:
+                label: Cms
+                items:
+                    - sonata.admin.cms_menu
             cine.admin.group.fiche:
                 label: Cinema
                 items:
@@ -28,7 +32,7 @@ sonata_admin:
                     - sonata.admin.cin_serie
                     - sonata.admin.cin_cm
                     - sonata.admin.cin_fest
-            cwd.admin.group.media:
+            cine.admin.group.media:
                 label: Médias
                 items:
                     - cine.admin.media

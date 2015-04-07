@@ -33,6 +33,7 @@ class AppKernel extends Kernel
 
             new Application\Sonata\MediaBundle\ApplicationSonataMediaBundle(),
             new Cine\CinemaBundle\CineCinemaBundle(),
+            new Cine\CmsBundle\CineCmsBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

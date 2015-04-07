@@ -1,0 +1,23 @@
+services:
+    cine.cms.menu_builder:
+            class: Cine\CmsBundle\Menu\MenuBuilder
+            arguments: ["@knp_menu.factory"]
+
+    cine.cms.menu.main:
+        class: Knp\Menu\MenuItem
+        factory_service: cine.cms.menu_builder
+        factory_method: createMainMenu
+        arguments: ["@request"]
+        scope: request
+        tags:
+            - { name: knp_menu.menu, alias: main }
+
+    cine.admin.form.type.cine_tree:
+           class: Cine\CmsBundle\Form\Type\TreeType
+           tags:
+               - { name: form.type, alias: cine_tree }
+
+    cine.admin.form.type.cine_tree_node_selector:
+           class: Cine\CmsBundle\Form\Type\TreeNodeSelectorType
+           tags:
+               - { name: form.type, alias: cine_tree_node_selector }

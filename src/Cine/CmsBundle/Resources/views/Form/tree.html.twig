@@ -1,0 +1,89 @@
+{% block cine_tree_widget %}
+{% set parent_id = null  %}
+{% set parent_node = app.request.query.get('parent') %}
+{% if form.vars.data and form.vars.data.id is defined and form.vars.data.id  is not null %}
+        {% set parent_id = form.vars.data.id   %}
+    {% else %}
+        {% set parent_id = parent_node %}
+{% endif %}
+
+{{ form_errors(form) }}
+<div id="{{ id }}"></div>
+<input id="field_{{ id }}" type="hidden" name="{{ full_name }}" value="{{parent_id}}"/>
+<div style="display: none" id="field_dialog_{{ id }}"></div>
+<script type="text/javascript">
+    loadDraggableTree('{{ id }}');
+    function loadDraggableTree(id) {
+        var rootId;
+        $({{ id }})
+                .bind('move_node.jstree', function(e, data) {
+                    if (typeof data.parent !== 'undefined') {
+                        var parent = data.parent;
+                        if (data.parent == '#') {
+                            parent = rootId;
+                        }
+                        $.ajax({
+                            url: Routing.generate('admin_move_menu_items_tree', {'id': data.node.id, 'parent': parent, 'position': data.position})
+                        }).done(function(data) {
+                        });
+                    }
+                })
+                .jstree({
+                    "core": {
+                        "check_callback": true,
+                        "themes": {"stripes": true},
+                        "data": function(obj, callback) {
+                            $.ajax({
+                                url: Routing.generate('admin_get_menu_items_tree', {'id': {{form.parent.vars.data.id}}})
+                            }).done(function(data) {
+                                dataJson = jQuery.parseJSON(data.replace(/__children/g, 'children').replace(/titre/g, 'text'));
+                                rootId = dataJson.rootId
+                                callback.call(this, dataJson.tree);
+                            });
+                        }},
+                    "plugins": [
+                        "dnd",
+                        "state", "types", "contextmenu"
+                    ],
+                    contextmenu: {
+                        "items":
+                                function($node) {
+                                    return{"Create": {
+                                            "label": "Créer",
+                                            "action": function(obj) {
+                                                var dialogLink = $('<a>', {
+                                                    href: Routing.generate('admin_cine_cms_menuitem_create', {'parent': $node.id, 'menu': {{form.parent.vars.data.id}}})
+                                                });
+                                                start_field_dialog_form_add_{{ id }}(dialogLink);
+                                            }
+                                        },
+                                        "Delete": {
+                                            "label": "Supprimer",
+                                            "action": function(obj) {
+                                                var dialogLink = $('<a>', {
+                                                    href: Routing.generate('admin_cine_cms_menuitem_delete', {'id': $node.id})
+
+                                                });
+                                                start_field_dialog_form_add_{{ id }}(dialogLink);
+
+                                            }
+                                        },
+                                        "Edit": {
+                                            "label": "Editer",
+                                            "action": function(obj) {
+                                                var dialogLink = $('<a>', {
+                                                    href: Routing.generate('admin_cine_cms_menuitem_edit', {'id': $node.id})
+                                                });
+                                                start_field_dialog_form_add_{{ id }}(dialogLink);
+                                            }
+                                        }
+                                    };
+                                }
+                    }
+                });
+    }
+</script>
+<a href="{{ path('admin_cine_cms_menuitem_create' , {'menu': form.parent.vars.data.id } ) }}" onclick="return start_field_dialog_form_add_{{ id }}(this);" class="btn">Ajouter</a>
+{% include 'CineCmsBundle:Form:edit_orm_many_association_script.html.twig' %}
+ {% include 'SonataDoctrineORMAdminBundle:CRUD:edit_orm_one_association_script.html.twig' %}
+{% endblock %}

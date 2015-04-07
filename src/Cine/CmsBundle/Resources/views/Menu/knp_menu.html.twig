@@ -1,0 +1,82 @@
+{% extends 'knp_menu.html.twig' %}
+{% block root %}
+{% set listAttributes = item.childrenAttributes %}
+<div id="main-menu" class="navbar yamm">
+    <div class="navbar-header">
+        <button type="button" data-toggle="collapse" data-target="#navbar-collapse-1" class="navbar-toggle"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+        <a href="{{ path('cine_cms_homepage')}}" class="navbar-brand" title="accueil">
+            <img src="{{ asset('bundles/cinecms/images/icons/home_orange.png') }}" alt="accueil" title="accueil" />
+        </a>
+    </div>
+    <div id="navbar-collapse-1" class="navbar-collapse collapse">
+                            {{ block('list') -}}
+    </div>
+</div>
+{% endblock %}
+
+{% block list %}
+{% if item.hasChildren and options.depth is not sameas(0) and item.displayChildren %}
+    {% if options.depth == 3 %}
+<ul class="nav navbar-nav">
+                {{ block('children') }}
+</ul>
+        {% endif %}
+      {% if options.depth == 2 %}
+<ul class="dropdown-menu">
+    <li>
+        <div class="yamm-content">
+            <div class="row">
+                <ul class="col-sm-2 list-unstyled">
+                        {{ block('children') }}
+                </ul>
+            </div>
+        </div>
+    </li>
+</ul>
+        {% endif %}
+        {% if options.depth == 1 %}
+<ul class="col-sm-2 list-unstyled"> {{ block('children') }} </ul>
+        {% endif %}
+    {% endif %}
+{% endblock %}
+
+{% block item %}
+{% if item.displayed %}
+{# building the class of the item #}
+    {%- set classes = item.attribute('class') is not empty ? [item.attribute('class')] : [] %}
+    {%- if item.current %}
+        {%- set classes = classes|merge([options.currentClass]) %}
+    {%- elseif matcher.isAncestor(item, options.depth) %}
+        {%- set classes = classes|merge([options.ancestorClass]) %}
+    {%- endif %}
+    {%- if item.actsLikeFirst %}
+        {%- set classes = classes|merge([options.firstClass]) %}
+    {%- endif %}
+    {%- if item.actsLikeLast %}
+        {%- set classes = classes|merge([options.lastClass]) %}
+    {%- endif %}
+    {%- set attributes = item.attributes %}
+    {%- if classes is not empty %}
+        {%- set attributes = attributes|merge({'class': classes|join(' ')}) %}
+    {%- endif %}
+{# displaying the item #}
+<li class="dropdown {% if (item.level == 2) %}col-xs-4" style="padding-left: 5px;{% if (item.extras.clear) %} clear: both{% endif %}{% endif %}">
+        {%- if item.uri is not empty and (not item.current or options.currentAsLink) %}
+        {{ block('linkElement') }}
+        {%- else %}
+        {{ block('spanElement') }}
+        {%- endif %}
+{# render the list of children#}
+        {%- set childrenClasses = item.childrenAttribute('class') is not empty ? [item.childrenAttribute('class')] : [] %}
+        {%- set childrenClasses = childrenClasses|merge(['menu_level_' ~ item.level]) %}
+        {%- set listAttributes = item.childrenAttributes|merge({'class': childrenClasses|join(' ') }) %}
+        {{ block('list') }}
+</li>
+{% endif %}
+{% endblock %}
+
+{% block linkElement %}<a href="{{ item.uri }}">{{ block('label') }}</a>{% endblock %}
+
+{% block spanElement %}<a data-toggle="dropdown" class="dropdown-toggle" href="#">{{ block('label') }}</a>{% endblock %}
+
+{% block label %}{% if options.allow_safe_labels and item.getExtra('safe_label', false) %}{{ item.label|raw }}{% else %}{{ item.label }}{% endif %}{% endblock %}

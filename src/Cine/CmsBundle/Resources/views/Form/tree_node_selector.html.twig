@@ -1,0 +1,10 @@
+{% block cine_tree_node_selector_widget %}
+{{ form_errors(form) }}
+<div id="{{ id }}"></div>
+<input id="field_{{ id }}" type="hidden" name="{{ full_name }}" value="{{form.vars.value}}"/>
+<button type="button" class="btn" id="reset_selection_{{ id }}">Réinitialiser</button>
+<script type="text/javascript">
+    adminCine.tree.loadNodeSelector('{{ tree_url }}', '{{ id }}', '{{form.vars.value}}')
+</script>
+{% endblock %}
+
