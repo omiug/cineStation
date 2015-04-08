@@ -23,14 +23,6 @@ class MenuItemAdmin extends Admin {
             $this->getSubject()->setMenu($this->entityManager->getRepository('CineCmsBundle:Menu')->findOneById($this->getRequest()->get('menu')));
         }
 
-        $allSecurityRoles = array();
-        foreach ( $this->allSecurityRoles as $securRole ){
-            $roleExp = explode('_', $securRole);
-            if ( in_array($roleExp[1], array('BUNDLE', 'TYPE')) ) {
-                $allSecurityRoles[$securRole]=$securRole;
-            }
-        }
-
         $menuId = false;
         if (is_object($this->getSubject()->getMenu()) ) {
             $menuId = $this->getSubject()->getMenu()->getId();
@@ -56,12 +48,6 @@ class MenuItemAdmin extends Admin {
                 ->add('routeName', null, array('label' => 'Nom route'))
                 //->add('routeParameter', null, array('label' => 'Paramètre route'))
                 ->add('uri', null, array('label' => 'URI'))
-//                ->add('roles', 'choice', array(
-//                    "choices"=>$allSecurityRoles,
-//                    'expanded' => true,
-//                    'multiple' => true,
-//                    'required' => false
-//                ))
         ;
     }
 

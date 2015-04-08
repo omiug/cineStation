@@ -12,5 +12,11 @@ use Doctrine\ORM\EntityRepository;
  */
 class MenuRepository extends EntityRepository
 {
+    public function getMenu($id) {
+        $qb = $this->createQueryBuilder('m')
+                ->where('m.id = :menuId')
+                    ->setParameter(':menuId', $id);
+        return $qb->getQuery()->getOneOrNullResult();
+    }
 
 }

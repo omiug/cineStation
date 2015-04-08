@@ -20,28 +20,18 @@ class MenuBuilder extends ContainerAware
     {
         $em = $this->container->get('doctrine')->getManager();
         $security = $this->container->get('security.context');
-
-        $menu = $em->getRepository('CineCmsBundle:Menu')->findOneByCode($options['code']);
+        $menu = $em->getRepository('CineCmsBundle:Menu')
+            ->getMenu($options['idMenu']);
 
         if (!$menu) {
             throw new \Exception('Aucun menu trouvé');
         }
-        $menuItems = $em->getRepository('CineCmsBundle:MenuItem')->getFirstLvlItemsByMenuCode($menu->getId());
-        $renderMenu = $factory->createItem($menu->getCode());
+
+        $menuItems = $em->getRepository('CineCmsBundle:MenuItem')
+            ->getFirstLvlItemsByMenu($menu);
+        $renderMenu = $factory->createItem($menu->getTitre());
         foreach ($menuItems as $menuItem) {
-            $roles = $menuItem->getRoles();
-            $display = (is_null($roles) || !count($roles)) ? true : false;
-            if (!$display) {
-                foreach ($roles as $r) {
-                    if ($security->isGranted($r)) {
-                        $display = true;
-                        break;
-                    }
-                }
-            }
-            if ($display) {
-                $this->createItem($menuItem, $renderMenu);
-            }
+            $this->createItem($menuItem, $renderMenu);
         }
         return $renderMenu;
     }
@@ -75,20 +65,7 @@ class MenuBuilder extends ContainerAware
         }
 
         foreach ($menuItem->getChildren()as $subItem) {
-            $roles = $subItem->getRoles();
-            $display = (is_null($roles) || !count($roles)) ? true : false;
-            if (!$display) {
-                foreach ($roles as $r) {
-                    if ($security->isGranted($r)) {
-                        $display = true;
-                        break;
-                    }
-                }
-            }
-
-            if ($display) {
-                $this->createItem($subItem, $renderMenu[$menuItem->getTitre()]);
-            }
+            $this->createItem($subItem, $renderMenu[$menuItem->getTitre()]);
         }
     }
 }

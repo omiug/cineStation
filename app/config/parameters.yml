@@ -17,3 +17,4 @@ parameters:
         - ROLE_ADMIN
 
     domaine_name: "http://cinestation.fr"
+    menu_principal: 1

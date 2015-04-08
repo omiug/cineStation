@@ -32,6 +32,7 @@ twig:
     strict_variables: "%kernel.debug%"
     globals:
         domaine_name: %domaine_name%
+        menu_principal: %menu_principal%
     form:
       resources:
         - 'CineCmsBundle::Form/tree.html.twig'

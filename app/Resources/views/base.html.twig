@@ -38,7 +38,13 @@
                         Ciné' Station
                     </a>
                 {% endblock %}
-
+               {% block menu %}
+                    {% set user = app.security.getToken().getUser() %}
+                    {% if user and is_granted('IS_AUTHENTICATED_FULLY') %}
+                        {% set menu = knp_menu_get('CineCmsBundle:MenuBuilder:createMenu', [], {'idMenu': menu_principal} ) %}
+                        {{ knp_menu_render(menu, {'template': 'CineCmsBundle:Menu:knp_menu.html.twig', 'depth' : 3 }) }}
+                    {% endif %}
+                {% endblock %}
                 </div>
                 <div id="content">
                     {% block body %}{% endblock %}

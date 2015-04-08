@@ -19,22 +19,20 @@ class MenuItemRepository extends NestedTreeRepository
      * @return type
      * @todo repasser par gedmo
      */
-    public function getFirstLvlItemsByMenuCode($menuCode)
+    public function getFirstLvlItemsByMenu($menu)
     {
-        return $this->createQueryBuilder('m')
+        $qb = $this->createQueryBuilder('m')
                 ->select('m')
-                ->orderBy('m.root, m.lft', 'ASC')
-                ->where('m.menu = :menuCode')
-                ->andWhere('m.lvl in(1)')
-                ->addSelect('child')
+                ->addSelect('child, subChild, sub2Child')
                 ->leftJoin('m.children', 'child')
-                ->addSelect('subChild')
                 ->leftJoin('child.children', 'subChild')
-                ->addSelect('sub2Child')
                 ->leftJoin('subChild.children', 'sub2Child')
-                ->setParameter(':menuCode', $menuCode)
-                ->getQuery()
-                ->getResult();
+                ->where('m.menu = :menuCode')
+                    ->setParameter(':menuCode', $menu)
+                ->andWhere('m.lvl in(1)')
+                ->orderBy('m.root, m.lft', 'ASC');
+        
+        return $qb->getQuery()->getResult();
     }
 
     /**

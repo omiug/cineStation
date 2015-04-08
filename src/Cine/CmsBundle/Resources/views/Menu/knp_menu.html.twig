@@ -4,12 +4,12 @@
 <div id="main-menu" class="navbar yamm">
     <div class="navbar-header">
         <button type="button" data-toggle="collapse" data-target="#navbar-collapse-1" class="navbar-toggle"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
-        <a href="{{ path('cine_cms_homepage')}}" class="navbar-brand" title="accueil">
-            <img src="{{ asset('bundles/cinecms/images/icons/home_orange.png') }}" alt="accueil" title="accueil" />
+        <a href="{{ path('cine_cinema_homepage')}}" class="navbar-brand" title="accueil">
+            <img src="{{ asset('images/icons/home_orange.png') }}" alt="accueil" title="accueil" />
         </a>
     </div>
     <div id="navbar-collapse-1" class="navbar-collapse collapse">
-                            {{ block('list') -}}
+        {{ block('list') -}}
     </div>
 </div>
 {% endblock %}
