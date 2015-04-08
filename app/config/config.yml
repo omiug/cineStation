@@ -30,12 +30,20 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
+    globals:
+        domaine_name: %domaine_name%
+    form:
+      resources:
+        - 'CineCmsBundle::Form/tree.html.twig'
+        - 'CineCmsBundle::Form/tree_node_selector.html.twig'
+
+
 
 # Assetic Configuration
 assetic:
     debug:          "%kernel.debug%"
     use_controller: false
-    bundles:        [ ]
+    bundles: [SonataAdminBundle]
     filters:
         cssrewrite: ~
 
@@ -80,6 +88,15 @@ fos_user:
             type: cine_user_registration
         confirmation:
             enabled: true
+
+# FOSJsRouting Configuration
+fos_js_routing:
+    routes_to_expose:
+        - admin_get_menu_items_tree
+        - admin_cine_cms_menuitem_create
+        - admin_cine_cms_menuitem_delete
+        - admin_cine_cms_menuitem_edit
+
 # Sonata Configuration
 sonata_block:
     default_contexts: [cms]

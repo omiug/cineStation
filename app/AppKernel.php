@@ -23,6 +23,7 @@ class AppKernel extends Kernel
             new Cine\UserBundle\CineUserBundle(),
             
             new FOS\UserBundle\FOSUserBundle(),
+            new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
 
             new Sonata\AdminBundle\SonataAdminBundle(),  
             new Sonata\EasyExtendsBundle\SonataEasyExtendsBundle(),

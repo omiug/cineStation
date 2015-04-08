@@ -17,16 +17,17 @@ class MenuAdmin extends Admin
     {
         $formMapper
             ->add('titre', null, array('label' => 'Titre'))
-            ->add('actif', null, array('label' => 'Actif'))
-            ;
+            ->add('actif', null, array('label' => 'Actif'));
 
         if ((is_object($this->getSubject()) && $this->getSubject()->getId())) {
-            $formMapper->add('menuItems', 'cine_tree',
-                array('label' => 'Elements', 'class' => 'CineCmsBundle:Menu'));
+            $formMapper
+                ->add('menuItems', 'cine_tree', array(
+                    'label' => 'Elements',
+                    'class' => 'CineCmsBundle:Menu'
+                ));
         }
-        $formMapper->end();
 
-        ;
+        $formMapper->end();
     }
 
     // Fields to be shown on filter forms
@@ -42,19 +43,8 @@ class MenuAdmin extends Admin
         $listMapper
             ->addIdentifier('titre');
     }
-//
-//    public function getMenuTemplating()
-//    {
-//        return $this->menuTemplating;
-//    }
-//
-//    public function setMenuTemplating($menuTemplating)
-//    {
-//        $this->menuTemplating = $menuTemplating;
-//    }
 
     /**
-     * 
      * {@inheritdoc}
      */
     public function prePersist($object)

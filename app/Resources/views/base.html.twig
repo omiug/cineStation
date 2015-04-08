@@ -48,6 +48,9 @@
             </div>
         </div>
         {% block javascripts %}
+        {% javascripts '../app/Resources/public/js/*' %}
+            <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
             <script src="{{ asset("bootstrap-3.3.2/dist/js/bootstrap.min.js") }}"></script>
         {% endblock %}
     </body>

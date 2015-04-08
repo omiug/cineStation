@@ -56,12 +56,12 @@ class MenuItemAdmin extends Admin {
                 ->add('routeName', null, array('label' => 'Nom route'))
                 //->add('routeParameter', null, array('label' => 'Paramètre route'))
                 ->add('uri', null, array('label' => 'URI'))
-                ->add('roles', 'choice', array(
-                    "choices"=>$allSecurityRoles,
-                    'expanded' => true,
-                    'multiple' => true,
-                    'required' => false
-                ))
+//                ->add('roles', 'choice', array(
+//                    "choices"=>$allSecurityRoles,
+//                    'expanded' => true,
+//                    'multiple' => true,
+//                    'required' => false
+//                ))
         ;
     }
 

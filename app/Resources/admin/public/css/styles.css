@@ -1,0 +1,59 @@
+.hide-subLabel label{
+    display: none!important;
+}
+.hide-subLabel .controls{
+    margin: 0!important;
+}
+#page-wrapper{
+    margin: 0;
+}
+
+.mapping-zone-title{
+    color : #428bca;
+    padding: 5px;
+}
+
+.mapping-zone-container .sonata-collection-delete{
+    float: none;
+}
+.content-element{
+    margin-top: 10px;
+    color : #428bca;
+}
+.mapping-zone-container, .contenteditable{
+    border: solid 2px #428bca !important;
+
+    /*width:200px;*/
+    min-height: 110px;
+}
+.contenteditable{
+    padding: 0 5px;
+}
+
+.mapping-zone-container{
+    padding: 0;
+}
+
+.mapping-zone-container table{
+    width: 100%;
+}
+.mapping-zone-container tbody tr{
+  border: solid 1px #ddd;
+}
+.mapping-zone-container tbody tr{
+  padding: 3px;
+}
+.sonata-collection-row input[type='file']{
+    max-width: 350px !important;
+}
+.sonata-collection-row input.form-control{
+    height: auto;
+}
+
+.handle img{
+    margin-left: 10px;
+}
+
+div.visualiser {
+    text-align: center;
+}

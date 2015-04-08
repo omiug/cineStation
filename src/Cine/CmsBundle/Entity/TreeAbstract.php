@@ -54,7 +54,7 @@ abstract class TreeAbstract
      */
     public function preUpdate()
     {
-        $this->setDateModification(new DateTime());
+        $this->setDateModification(new \DateTime());
         return $this;
     }
 

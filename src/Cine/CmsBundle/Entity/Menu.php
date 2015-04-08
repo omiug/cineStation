@@ -2,18 +2,13 @@
 
 namespace Cine\CmsBundle\Entity;
 
-use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use Gedmo\Mapping\Annotation as Gedmo;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Menu
  *
  * @ORM\Table(name="cms_menu")
- * @ORM\HasLifecycleCallbacks
- * @Gedmo\SoftDeleteable(fieldName="dateSuppr")
  * @ORM\Entity(repositoryClass="Cine\CmsBundle\Repository\MenuRepository")
  */
 class Menu extends TreeAbstract
@@ -41,7 +36,7 @@ class Menu extends TreeAbstract
         return $this->getTitre();
     }
 
-        public function getActif()
+    public function getActif()
     {
         return $this->actif;
     }

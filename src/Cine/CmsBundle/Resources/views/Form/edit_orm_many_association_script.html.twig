@@ -196,10 +196,6 @@
         var form = jQuery(this);
 
         Admin.log('[{{ id }}|field_dialog_form_action] execute ajax call');
-        //@todo : crÃ©er une nouvelle function pour ce cas
-        for (instance in CKEDITOR.instances) {
-            CKEDITOR.instances[instance].updateElement();
-        }
 
         // the ajax post
         jQuery(form).ajaxSubmit({

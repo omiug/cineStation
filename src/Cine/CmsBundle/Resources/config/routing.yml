@@ -9,3 +9,4 @@ admin_move_menu_items_tree:
     defaults: { _controller: CineCmsBundle:JsTree:moveMenuItems }
     requirements:
         id: ".+"
+        
