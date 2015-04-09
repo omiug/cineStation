@@ -86,9 +86,6 @@ class MenuItemAdmin extends Admin {
         $this->entityManager = $em;
     }
 
-    public function setAllSecurityRoles($securityRoles){
-        $this->allSecurityRoles=$securityRoles;
-    }
     /**
      * {@inheritdoc}
      */

@@ -15,6 +15,5 @@ parameters:
     allAdminSecurityRoles:
         - ROLE_USER
         - ROLE_ADMIN
-
-    domaine_name: "http://cinestation.fr"
+    domaine_name: www.cinestation.com
     menu_principal: 1

@@ -56,9 +56,15 @@ class User extends BaseUser {
      */
     private $famille;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Cine\CmsBundle\Entity\Article", mappedBy="auteur", cascade={"persist"})
+     */
+    private $articles;
+
     public function __construct() {
         parent::__construct();
         $this->groups = new ArrayCollection();
+        $this->articles = new ArrayCollection();
     }
 
     public function getId() {
@@ -103,5 +109,9 @@ class User extends BaseUser {
 
     public function getFamille() {
         return $this->famille;
+    }
+
+    public function getArticles() {
+        return $this->articles;
     }
 }

@@ -32,6 +32,8 @@ class AppKernel extends Kernel
             new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
             new Sonata\MediaBundle\SonataMediaBundle(),
 
+            new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
+
             new Application\Sonata\MediaBundle\ApplicationSonataMediaBundle(),
             new Cine\CinemaBundle\CineCinemaBundle(),
             new Cine\CmsBundle\CineCmsBundle(),

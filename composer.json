@@ -24,7 +24,8 @@
         "sonata-project/doctrine-orm-admin-bundle": "~2.3",
         "sonata-project/media-bundle": "~2.3",
         "knplabs/knp-menu": "~2.0",
-        "gedmo/doctrine-extensions": "v2.3.5"
+        "gedmo/doctrine-extensions": "v2.3.5",
+        "egeloen/ckeditor-bundle": "2.*"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"

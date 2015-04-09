@@ -7,8 +7,6 @@ services:
              - ~
              - Cine\CmsBundle\Entity\Menu
              - ~
-#        calls:
-#            - [ addChild, [ @sonata.admin.cms_menu_item ] ]
 
     sonata.admin.cms_menu_item:
         class: Cine\CmsBundle\Admin\MenuItemAdmin
@@ -20,4 +18,23 @@ services:
              - ~
         calls:
             - [ setEntityManager, [ @doctrine.orm.entity_manager ]]
-            - [ setAllSecurityRoles, [%allAdminSecurityRoles%] ]
+
+    sonata.admin.cms_article_etat:
+        class: Cine\CmsBundle\Admin\ArticleEtatAdmin
+        tags:
+             - { name: sonata.admin, manager_type: orm, group: "Content", label: "Etat article" }
+        arguments:
+             - ~
+             - Cine\CmsBundle\Entity\ArticleEtat
+             - ~
+
+    sonata.admin.cms_article:
+        class: Cine\CmsBundle\Admin\ArticleAdmin
+        tags:
+             - { name: sonata.admin, manager_type: orm, group: "Content", label: "Article" }
+        arguments:
+             - ~
+             - Cine\CmsBundle\Entity\Article
+             - ~
+        calls:
+            - [ setSecurityContext, [ @security.context ]]
