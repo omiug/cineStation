@@ -7,7 +7,7 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 
-class CourtMetrageAdmin extends Admin
+class CourtMetrageAdmin extends CinemaAdmin
 {
 	protected function configureFormFields(FormMapper $FormMapper){
 

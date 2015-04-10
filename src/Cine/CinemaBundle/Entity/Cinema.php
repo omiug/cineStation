@@ -4,12 +4,13 @@ namespace Cine\CinemaBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
- * @ORM\Entity(repositoryClass="Cine\CinemaBundle\Repository\CinemaRepository")
- * @ORM\Table(name="cin_cinema")
+ * @ORM\MappedSuperclass
+ * @UniqueEntity("titre")
  */
-class Cinema {
+abstract class Cinema {
     
     /**
      * @ORM\Id
@@ -19,7 +20,7 @@ class Cinema {
     protected $id;
 
     /**
-     * @ORM\Column(name="civilite", type="string", length=50, nullable=false)
+     * @ORM\Column(name="titre", type="string", length=50, nullable=false)
      */
     protected $titre; 
 
@@ -27,17 +28,6 @@ class Cinema {
      * @ORM\Column(name="anneeReal", type="integer", length=4)
      */
     protected $anneeReal;
-
-    /**
-     * @ORM\ManyToMany(targetEntity="Cine\CinemaBundle\Entity\Genre", inversedBy="cinemas")
-     * @ORM\JoinTable(name="cin_cinema_genre")
-     */
-    protected $genres;    
-
-    /**
-     * @ORM\OneToMany(targetEntity="Cine\CinemaBundle\Entity\Participant", mappedBy="cinema")
-     */
-    protected $participants;     
 
     /**
      * @ORM\Column(name="pays", type="string", length=30)
@@ -67,7 +57,12 @@ class Cinema {
     /**
      * @ORM\Column(name="actif", type="boolean")
      */
-    protected $actif;    
+    protected $actif;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Cine\CmsBundle\Entity\Article", mappedBy="cinema", cascade={"persist"})
+     */
+    protected $articles;
 
     public function __construct(){
         $this->genre = new ArrayCollection();
@@ -92,41 +87,6 @@ class Cinema {
 
     public function getAnneeReal() {
         return $this->anneeReal;
-    }
-
-    public function setGenres($genres) {
-        foreach ($genres as $gre) {
-            $this->addGenres($gre);
-        }
-    }
-
-    public function getGenres() {
-        return $this->genres;
-    }
-
-    public function addGenres(Genre $genre) {
-        $this->genres = $genre;
-    }
-
-    public function removeGenres(Genre $genre) {
-        $this->genres->removeElement($genre);
-    }
-
-    public function setParticipants($participants){
-        foreach ($participants as $membre) {
-            $this->addParticipant($membre);
-        }
-    }
-    public function getParticipants() {
-        return $this->participants;
-    }
-
-    public function addParticipant(Participant $membre) {
-        $this->participants = $membre;
-    }
-
-    public function removeParticipant(Participant $membre) {
-        $this->participants->removeElement($membre);
     }
 
     public function setPays($pays) {

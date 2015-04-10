@@ -2,15 +2,13 @@
 
 namespace Cine\CinemaBundle\Admin;
 
-use Sonata\AdminBundle\Admin\Admin;
-use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
+use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 
-class SerieAdmin extends Admin
+class SerieAdmin extends CinemaAdmin
 {
 	protected function configureFormFields(FormMapper $FormMapper){
-
+        parent::configureFormFields($FormMapper);
 	}
-
 }

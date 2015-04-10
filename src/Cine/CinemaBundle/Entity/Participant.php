@@ -9,7 +9,6 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Participant 
 {
-
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
@@ -18,10 +17,22 @@ class Participant
     protected $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Cine\CinemaBundle\Entity\Cinema", inversedBy="participants")
-     * @ORM\JoinTable(name="cin_participant_cinema")
+     * @ORM\ManyToOne(targetEntity="Cine\CinemaBundle\Entity\CourtMetrage", inversedBy="participants")
+     * @ORM\JoinTable(name="cin_cm_participant")
      */
-    protected $cinema; 	
+    protected $courtMetrages;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Cine\CinemaBundle\Entity\Film", inversedBy="participants")
+     * @ORM\JoinTable(name="cin_film_participant")
+     */
+    protected $films;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Cine\CinemaBundle\Entity\Serie", inversedBy="participants")
+     * @ORM\JoinTable(name="cin_serie_participant")
+     */
+    protected $series;
 
     /**
      * @ORM\ManyToOne(targetEntity="Cine\CinemaBundle\Entity\Cast", inversedBy="participants")
@@ -34,13 +45,6 @@ class Participant
      * @ORM\JoinTable(name="cin_participant_type")
      */
     protected $type; 
-
-    public function setCinema($cinema){
-    	$this->cinema = $cinema;
-    }
-    public function getCinema(){
-    	return $this->cinema;
-    }
 
     public function setCast($cast){
     	$this->cast = $cast;

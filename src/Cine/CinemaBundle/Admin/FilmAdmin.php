@@ -2,12 +2,11 @@
 
 namespace Cine\CinemaBundle\Admin;
 
-use Sonata\AdminBundle\Admin\Admin;
-use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
+use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 
-class FilmAdmin extends Admin
+class FilmAdmin extends CinemaAdmin
 {
 	protected function configureFormFields(FormMapper $FormMapper){
 		$FormMapper
@@ -62,27 +61,27 @@ class FilmAdmin extends Admin
 						'required' => true
 					))
 				->end()
-			->end()
-			->tab("Critique")
-				->with('Avis Personnel', array('class'=> 'col-xs-4'))
-					->add('critique', 'text', array(
-							'label' => 'Critique',
-							'required' => true
-					))
-				->end()
-				->with('Synthèse Positive', array('class'=> 'col-xs-4'))
-					->add('bonPoint', 'text', array(
-							'label' => 'Bon Point',
-							'required' => true
-					))
-				->end()
-				->with('Synthèse Négative', array('class'=> 'col-xs-4'))				
-					->add('mauvaisPoint', 'text', array(
-							'label' => 'Mauvais Point',
-							'required' => true
-					))
-				->end()
 			->end();
+//			->tab("Critique")
+//				->with('Avis Personnel', array('class'=> 'col-xs-4'))
+//					->add('critique', 'text', array(
+//							'label' => 'Critique',
+//							'required' => true
+//					))
+//				->end()
+//				->with('Synthèse Positive', array('class'=> 'col-xs-4'))
+//					->add('bonPoint', 'text', array(
+//							'label' => 'Bon Point',
+//							'required' => true
+//					))
+//				->end()
+//				->with('Synthèse Négative', array('class'=> 'col-xs-4'))
+//					->add('mauvaisPoint', 'text', array(
+//							'label' => 'Mauvais Point',
+//							'required' => true
+//					))
+//				->end()
+//			->end();
 	}
 
 	protected function configureDatagridFilters(DatagridMapper $datagridMapper) {

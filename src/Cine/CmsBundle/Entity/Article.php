@@ -62,8 +62,12 @@ class Article
 
     /**
      * @ORM\ManyToOne(targetEntity="Cine\UserBundle\Entity\User", inversedBy="articles")
+     * @ORM\JoinColumn(name="auteur_id", referencedColumnName="id")
      */
     private $auteur;
+
+
+    private $cinema;
 
     /**
      * @ORM\Column(name="dateCreation", type="datetime")
@@ -156,5 +160,13 @@ class Article
 
     public function getDateModification() {
         return $this->dateModification;
+    }
+
+    public function setCinema(Cinema $cinema) {
+        $this->cinema = $cinema;
+    }
+
+    public function getCinema() {
+        return $this->cinema;
     }
 }

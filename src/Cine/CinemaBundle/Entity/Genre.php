@@ -16,14 +16,26 @@ class Genre{
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id; 
+
     /**
      * @ORM\Column(name="nom", type="string", length=50, nullable=false)
      */
     protected $nom;
+
     /**
-     * @ORM\ManyToMany(targetEntity="Cine\CinemaBundle\Entity\Cinema", mappedBy="genres")
+     * @ORM\ManyToMany(targetEntity="Cine\CinemaBundle\Entity\CourtMetrage", mappedBy="genres")
      */
-    protected $cinemas;  
+    protected $courtMetrages;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Cine\CinemaBundle\Entity\Film", mappedBy="genres")
+     */
+    protected $films;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Cine\CinemaBundle\Entity\Serie", mappedBy="genres")
+     */
+    protected $series;
 
     public function __construct(){
     	$this->cinemas = new ArrayCollection();
@@ -39,21 +51,4 @@ class Genre{
     public function getNom(){
         return $this->nom;
     }	
-
-    public function setCinemas($cinemas){
-        foreach ($cinemas as $cine) {
-            $this->addCinema($cine);
-        }
-    }
-    public function getCinemas() {
-        return $this->cinemas;
-    }
-
-    public function addCinema(Cinema $cine) {
-        $this->cinemas = $cine;
-    }
-
-    public function removeCinema(Cinema $cine) {
-        $this->cinemas->removeElement($cine);
-    }
 }

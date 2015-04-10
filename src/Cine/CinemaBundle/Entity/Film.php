@@ -8,8 +8,19 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @ORM\Entity(repositoryClass="Cine\CinemaBundle\Repository\FilmRepository")
  * @ORM\Table(name="cin_film")
  */
-class Film extends Cinema{
+class Film extends Cinema
+{
+    /**
+     * @ORM\ManyToMany(targetEntity="Cine\CinemaBundle\Entity\Genre", inversedBy="films")
+     * @ORM\JoinTable(name="cin_film_genre")
+     */
+    protected $genres;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Cine\CinemaBundle\Entity\Participant", mappedBy="films")
+     */
+    protected $participants;
+    
     protected $bandeAnnonce;
 
     /**
@@ -93,5 +104,41 @@ class Film extends Cinema{
     }
     public function getMauvaisPoint() {
         return $this->mauvaisPoint;
+    }
+
+    public function setGenres($genres) {
+        foreach ($genres as $gre) {
+            $this->addGenre($gre);
+        }
+    }
+
+    public function getGenres() {
+        return $this->genres;
+    }
+
+    public function addGenre(Genre $genre) {
+        $this->genres[] = $genre;
+    }
+
+    public function removeGenre(Genre $genre) {
+        $this->genres->removeElement($genre);
+    }
+
+    public function setParticipants($participants){
+        foreach ($participants as $membre) {
+            $this->addParticipant($membre);
+        }
+    }
+
+    public function getParticipants() {
+        return $this->participants;
+    }
+
+    public function addParticipant(Participant $membre) {
+        $this->participants = $membre;
+    }
+
+    public function removeParticipant(Participant $membre) {
+        $this->participants->removeElement($membre);
     }
 }
