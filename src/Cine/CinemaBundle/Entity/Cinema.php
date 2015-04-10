@@ -59,10 +59,6 @@ abstract class Cinema {
      */
     protected $actif;
 
-    /**
-     * @ORM\OneToMany(targetEntity="Cine\CmsBundle\Entity\Article", mappedBy="cinema", cascade={"persist"})
-     */
-    protected $articles;
 
     public function __construct(){
         $this->genre = new ArrayCollection();

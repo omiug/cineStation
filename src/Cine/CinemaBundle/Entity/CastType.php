@@ -8,9 +8,9 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity(repositoryClass="Cine\CinemaBundle\Repository\TypeRepository")
- * @ORM\Table(name="cin_type")
+ * @ORM\Table(name="cin_cast_type")
  */
-class Type
+class CastType
 {
 
     /**
@@ -31,7 +31,7 @@ class Type
     protected $participants; 
 
     public function __construct(){
-    	$this->participant = new ArrayCollection();
+    	$this->participants = new ArrayCollection();
     }
 
     public function setNom($nom){
@@ -41,21 +41,7 @@ class Type
     	return $this->nom;
     }
 
-    public function setParticipants($participants){
-        foreach ($participants as $membre) {
-            $this->addParticipant($membre);
-        }
-    }
     public function getParticipants() {
         return $this->participants;
     }
-
-    public function addParticipant(Participant $membre) {
-        $this->participants = $membre;
-    }
-
-    public function removeParticipant(Participant $membre) {
-        $this->participants->removeElement($membre);
-    }
-
 }

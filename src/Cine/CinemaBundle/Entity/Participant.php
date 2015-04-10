@@ -41,7 +41,7 @@ class Participant
     protected $cast; 	
 
     /**
-     * @ORM\ManyToOne(targetEntity="Cine\CinemaBundle\Entity\Type", inversedBy="participants")
+     * @ORM\ManyToOne(targetEntity="Cine\CinemaBundle\Entity\CastType", inversedBy="participants")
      * @ORM\JoinTable(name="cin_participant_type")
      */
     protected $type; 
