@@ -72,3 +72,14 @@ services:
             - ~
         calls:
             - [ setServRecompense, [ @cine_cine.recompense ]]
+
+    sonata.admin.cin_cast_recompense:
+        class: Cine\CinemaBundle\Admin\CastRecompenseAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Fiche", label: "Cast Récompense" }
+        arguments:
+            - ~
+            - Cine\CinemaBundle\Entity\CastRecompense
+            - ~
+        calls:
+            - [ setServRecompense, [ @cine_cine.recompense ]]

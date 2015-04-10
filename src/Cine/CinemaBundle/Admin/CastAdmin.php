@@ -40,12 +40,9 @@ class CastAdmin extends Admin
                 ), array(
                     'link_parameters' => array('context' => 'default'),
                 ))
-                ->add('recompenses', 'sonata_type_model', array(
+                ->add('castRecompenses', 'sonata_type_collection', array(
                     'label' => 'Récompenses',
-                    'required' => false,
-                    'expanded' => false,
-                    'multiple' => true,
-                    'btn_add' => true
+                    'required' => false
                 ))
             ->end();
     }

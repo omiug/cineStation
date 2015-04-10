@@ -3,6 +3,7 @@
 namespace Cine\CinemaBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Table(name="cin_cast_recompense")
@@ -34,6 +35,18 @@ class CastRecompense {
      */
     private $recompense;
 
+    /**
+     * @Assert\Length(
+     *      min = "4",
+     *      max = "4",
+     *      minMessage = "La date ne peux pas faire mois de {{ limit }} caractères.",
+     *      maxMessage = "La date ne peux pas faire plus de {{ limit }} caractères."
+     * )
+     *
+     * @ORM\Column(name="annee", type="integer", length=4)
+     */
+    protected $annee;
+
     public function setCast(Cast $cast) {
         $this->cast = $cast;
     }
@@ -48,5 +61,13 @@ class CastRecompense {
 
     public function getRecompense() {
         return $this->recompense;
+    }
+
+    public function setAnnee($annee) {
+        $this->annee = $annee;
+    }
+
+    public function getAnnee() {
+        return $this->annee;
     }
 }

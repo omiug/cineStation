@@ -65,6 +65,15 @@ class Cast{
         $this->castRecompenses = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        if ( $this->pseudo ) {
+            return $this->pseudo;
+        }
+
+        return $this->nom . ' ' . $this->prenom;
+    }
+
     public function getId() {
         return $this->id;
     }
