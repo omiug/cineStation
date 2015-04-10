@@ -22,7 +22,7 @@ class Serie extends Cinema{
     protected $saisons; 
 
     /**
-     * @ORM\ManyToMany(targetEntity="Cine\CinemaBundle\Entity\Genre", inversedBy="films")
+     * @ORM\ManyToMany(targetEntity="Cine\CinemaBundle\Entity\Genre", inversedBy="series")
      * @ORM\JoinTable(name="cin_serie_genre")
      */
     protected $genres;

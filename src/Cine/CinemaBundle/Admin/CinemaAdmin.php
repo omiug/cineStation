@@ -10,79 +10,44 @@ use Sonata\AdminBundle\Form\FormMapper;
 class CinemaAdmin extends Admin
 {
 	protected function configureFormFields(FormMapper $FormMapper){
-//		$FormMapper
-//			->tab("Description")
-//				->with('Synopsis', array('class' => 'col-xs-5'))
-//					->add('titre', 'text', array(
-//						'label' => 'Titre du Film',
-//						'required' => true
-//					))
-//					->add('synopsis', 'text', array(
-//						'label' => 'Résumé objectif de l\'histoire',
-//						'required' => true
-//					))
-//				->end()
-//				->with('Médias', array('class' => 'col-xs-7'))
-//					->add('poster', 'sonata_type_model_list', array('required' => false), array(
-//                        'link_parameters' => array('context' => 'default'),
-//                    ))
-//                    ->add('bandeAnnonce', 'text', array(
-//						'label' => 'URL de la bande annonce',
-//						'required' => true
-//					))
-//				->end()
-//			->end()
-//			->tab("Fiche Technique")
-//				->with('Casting')
-//					->add('anneeReal', 'datetime', array(
-//						'label' => 'Date de sortie',
-//						'required' => true
-//					))
-//					->add('genres', 'sonata_type_model', array(
-//						'label' => 'Genre',
-//						'required' => true
-//					))
-//					->add('pays', 'text', array(
-//						'label' => 'Nationalité',
-//						'required' => true
-//					))
-//					->add('budget', 'text', array(
-//						'label' => 'Budget',
-//						'required' => true
-//					))
-//					->add('recompenses', 'text', array(
-//						'label' => 'Récompenses'
-//					))
-//					->add('budget', 'text', array(
-//						'label' => 'Budget',
-//						'required' => true
-//					))
-//					->add('dureeFilm', 'time', array(
-//						'label' => 'Durée du film',
-//						'required' => true
-//					))
-//				->end()
-//			->end();
-//			->tab("Critique")
-//				->with('Avis Personnel', array('class'=> 'col-xs-4'))
-//					->add('critique', 'text', array(
-//							'label' => 'Critique',
-//							'required' => true
-//					))
-//				->end()
-//				->with('Synthèse Positive', array('class'=> 'col-xs-4'))
-//					->add('bonPoint', 'text', array(
-//							'label' => 'Bon Point',
-//							'required' => true
-//					))
-//				->end()
-//				->with('Synthèse Négative', array('class'=> 'col-xs-4'))
-//					->add('mauvaisPoint', 'text', array(
-//							'label' => 'Mauvais Point',
-//							'required' => true
-//					))
-//				->end()
-//			->end();
+		$FormMapper
+			->tab("Description")
+				->with('Synopsis', array('class' => 'col-xs-5'))
+					->add('titre', 'text', array(
+						'label' => 'Titre',
+						'required' => true
+					))
+					->add('synopsis', 'textarea', array(
+						'label' => 'Résumé objectif de l\'histoire',
+						'required' => true
+					))
+				->end()
+			->end()
+			->tab("Fiche Technique")
+				->with('Casting')
+					->add('anneeReal', 'sonata_type_date_picker', array(
+						'label' => 'Date de sortie',
+						'required' => true,
+                        'format' => 'dd/MM/yyyy',
+                        'widget' => 'single_text'
+                    ))
+					->add('pays', 'country', array(
+						'label' => 'Nationalité',
+						'required' => true
+					))
+					->add('budget', 'text', array(
+						'label' => 'Budget',
+						'required' => false
+					))
+					->add('recompenses', 'text', array(
+						'label' => 'Récompenses',
+						'required' => false
+					))
+					->add('actif', null, array(
+						'label' => 'Actif'
+					))
+				->end()
+			->end();
 	}
 
 	protected function configureDatagridFilters(DatagridMapper $datagridMapper) {

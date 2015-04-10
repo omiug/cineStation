@@ -37,7 +37,7 @@ twig:
       resources:
         - 'CineCmsBundle::Form/tree.html.twig'
         - 'CineCmsBundle::Form/tree_node_selector.html.twig'
-
+        - 'SonataCoreBundle:Form:datepicker.html.twig'
 
 
 # Assetic Configuration

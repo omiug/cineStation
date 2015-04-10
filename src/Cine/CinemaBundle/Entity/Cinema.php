@@ -50,11 +50,6 @@ abstract class Cinema {
     protected $recompenses;  
 
     /**
-     * @ORM\Column(name="dureeFilm", type="time",  nullable=false)
-     */
-    protected $dureeFilm;   
-
-    /**
      * @ORM\Column(name="actif", type="boolean")
      */
     protected $actif;
@@ -63,6 +58,7 @@ abstract class Cinema {
     public function __construct(){
         $this->genre = new ArrayCollection();
         $this->participant = new ArrayCollection();
+        $this->actif = true;
     }
     
     public function getId() {
@@ -115,14 +111,6 @@ abstract class Cinema {
 
     public function getRecompenses() {
         return $this->recompenses;
-    }
-
-    public function setDureeFilm($dureeFilm) {
-        $this->dureeFilm = $dureeFilm;
-    }
-
-    public function getDureeFilm() {
-        return $this->dureeFilm;
     }
 
     public function setActif($actif) {

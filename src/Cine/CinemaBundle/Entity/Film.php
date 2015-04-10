@@ -50,6 +50,11 @@ class Film extends Cinema
      */
     protected $mauvaisPoint;
 
+    /**
+     * @ORM\Column(name="dureeFilm", type="time",  nullable=false)
+     */
+    protected $dureeFilm;
+
     public function __construct(){
     	$this->festivals = new ArrayCollection();
     }
@@ -140,5 +145,13 @@ class Film extends Cinema
 
     public function removeParticipant(Participant $membre) {
         $this->participants->removeElement($membre);
+    }
+
+    public function setDureeFilm($dureeFilm) {
+        $this->dureeFilm = $dureeFilm;
+    }
+
+    public function getDureeFilm() {
+        return $this->dureeFilm;
     }
 }

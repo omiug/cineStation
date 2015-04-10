@@ -7,7 +7,7 @@ services:
             - ~
             - Cine\CinemaBundle\Entity\Cinema
             - ~
-            
+
     sonata.admin.cin_film:
         class: Cine\CinemaBundle\Admin\FilmAdmin
         tags:
@@ -42,4 +42,13 @@ services:
         arguments:
             - ~
             - Cine\CinemaBundle\Entity\Festival
+            - ~
+
+    sonata.admin.cin_genre:
+        class: Cine\CinemaBundle\Admin\GenreAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Fiche", label: "Genre" }
+        arguments:
+            - ~
+            - Cine\CinemaBundle\Entity\Genre
             - ~
