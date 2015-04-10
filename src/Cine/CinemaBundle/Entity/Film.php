@@ -24,7 +24,7 @@ class Film extends Cinema
     protected $bandeAnnonce;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Cine\CinemaBundle\Entity\Festival", mappedBy="film")
+     * @ORM\ManyToMany(targetEntity="Cine\CinemaBundle\Entity\Festival", mappedBy="films")
      */
     protected $festivals;
 

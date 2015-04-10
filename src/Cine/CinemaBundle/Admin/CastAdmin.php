@@ -11,45 +11,42 @@ class CastAdmin extends Admin
 {
 	protected function configureFormFields(FormMapper $FormMapper){
         $FormMapper
-            ->tab('Général')
-                ->with('Général', array('class' => 'col-xs-5 col-md-5'))
-                    ->add('nom', null, array(
-                        'label' => 'Nom'
-                    ))
-                    ->add('prenom', null, array(
-                        'label' => 'Prénom'
-                    ))
-                    ->add('pseudo', null, array(
-                        'label' => 'Pseudo',
-                        'required' => false
-                    ))
-                    ->add('dateNaissance', 'sonata_type_date_picker', array(
-                        'label' => 'Date de naissance',
-                        'required' => false,
-                        'format' => 'dd/MM/yyyy',
-                        'widget' => 'single_text'
-                    ))
-                    ->add('nationalite', 'country', array(
-                        'label' => 'Nationalité',
-                        'required' => false
-                    ))
-                ->end()
-                ->with('Photo', array('class' => 'col-xs-7 col-md-7'))
-                    ->add('photo', 'sonata_type_model_list', array(
-                        'label' => 'photo',
-                        'required' => false
-                    ), array(
-                        'link_parameters' => array('context' => 'default'),
-                    ))
-                ->end()
+            ->with('Général', array('class' => 'col-xs-5 col-md-5'))
+                ->add('nom', null, array(
+                    'label' => 'Nom'
+                ))
+                ->add('prenom', null, array(
+                    'label' => 'Prénom'
+                ))
+                ->add('pseudo', null, array(
+                    'label' => 'Pseudo',
+                    'required' => false
+                ))
+                ->add('dateNaissance', 'sonata_type_date_picker', array(
+                    'label' => 'Date de naissance',
+                    'required' => false,
+                    'format' => 'dd/MM/yyyy',
+                    'widget' => 'single_text'
+                ))
+                ->add('nationalite', 'country', array(
+                    'label' => 'Nationalité',
+                    'required' => false
+                ))
             ->end()
-            ->tab('Récompenses')
-                ->with('Récompenses')
-                    ->add('recompenses', null, array(
-                        'label' => 'Récompenses',
-                        'required' => false
-                    ))
-                ->end()
+            ->with('Autres', array('class' => 'col-xs-7 col-md-7'))
+                ->add('photo', 'sonata_type_model_list', array(
+                    'label' => 'photo',
+                    'required' => false
+                ), array(
+                    'link_parameters' => array('context' => 'default'),
+                ))
+                ->add('recompenses', 'sonata_type_model', array(
+                    'label' => 'Récompenses',
+                    'required' => false,
+                    'expanded' => false,
+                    'multiple' => true,
+                    'btn_add' => true
+                ))
             ->end();
     }
 

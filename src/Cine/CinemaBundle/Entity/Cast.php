@@ -3,10 +3,12 @@ namespace Cine\CinemaBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="Cine\CinemaBundle\Repository\CastRepository")
  * @ORM\Table(name="cin_cast")
+ * @UniqueEntity("nom")
  */
 class Cast{
 
@@ -43,24 +45,24 @@ class Cast{
     protected $nationalite;
 
     /**
-     * @ORM\OneToMany(targetEntity="Cine\CinemaBundle\Entity\Participant", mappedBy="cast")
+     * @ORM\OneToMany(targetEntity="Participant", mappedBy="cast")
      */
     protected $participants; 
 
     /**
-     * @ORM\Column(name="recompenses", type="array")
+     * @ORM\OneToMany(targetEntity="CastRecompense", mappedBy="cast", cascade={"persist"})
      */
-    protected $recompenses; 
+    protected $castRecompenses;
+
 
     /**
-     *
      * @ORM\ManyToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media",  cascade={"persist"})
-     *
      */
     private $photo;
 
     public function __construct(){
         $this->participants = new ArrayCollection();
+        $this->castRecompenses = new ArrayCollection();
     }
 
     public function getId() {
@@ -124,19 +126,29 @@ class Cast{
         $this->participants->removeElement($membre);
     }
 
-    public function setRecompenses($recompenses) {
-        $this->recompenses = $recompenses;
-    }
-    
-    public function getRecompenses() {
-        return $this->recompenses;
-    }
-
     public function setPhoto($media) {
         $this->photo = $media;
     }
 
     public function getPhoto() {
         return $this->photo;
+    }
+
+    public function setCastRecompenses($recompenses) {
+        foreach ( $recompenses as $rec ) {
+            $this->addCastRecompense($rec);
+        }
+    }
+
+    public function getCastRecompenses() {
+        return $this->castRecompenses;
+    }
+
+    public function addCastRecompense(CastRecompense $rec) {
+        $this->castRecompenses[] = $rec;
+    }
+
+    public function removeCastRecompense(CastRecompense $rec) {
+        $this->castRecompenses->removeElement($rec);
     }
 }

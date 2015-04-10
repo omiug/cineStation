@@ -26,6 +26,7 @@ sonata_admin:
                     - sonata.admin.cin_cm
                     - sonata.admin.cin_fest
                     - sonata.admin.cin_cast
+                    - sonata.admin.cin_recompense
                     - sonata.admin.cin_genre
             cine.admin.group.media:
                 label: Médias

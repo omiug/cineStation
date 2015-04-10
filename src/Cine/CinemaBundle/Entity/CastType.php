@@ -5,10 +5,12 @@ namespace Cine\CinemaBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="Cine\CinemaBundle\Repository\TypeRepository")
  * @ORM\Table(name="cin_cast_type")
+ * @UniqueEntity("nom")
  */
 class CastType
 {
@@ -28,7 +30,7 @@ class CastType
     /**
      * @ORM\OneToMany(targetEntity="Cine\CinemaBundle\Entity\Participant", mappedBy="type")
      */
-    protected $participants; 
+    protected $participants;
 
     public function __construct(){
     	$this->participants = new ArrayCollection();

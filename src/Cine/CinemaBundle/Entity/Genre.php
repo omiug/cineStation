@@ -3,10 +3,12 @@ namespace Cine\CinemaBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="Cine\CinemaBundle\Repository\GenreRepository")
  * @ORM\Table(name="cin_genre")
+ * @UniqueEntity("nom")
  */
 class Genre{
 

@@ -1,1 +1,4 @@
-#services:
+services:
+    cine_cine.recompense:
+        class: Cine\CinemaBundle\Service\RecompenseService
+        arguments: []
