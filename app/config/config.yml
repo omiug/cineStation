@@ -117,8 +117,7 @@ sonata_media:
                 - sonata.media.provider.file
 
             formats:
-                small: { width: 100 , quality: 70}
-                big:   { width: 500 , quality: 70}
+                identity: { width: 75 , quality: 70}
 
     cdn:
         server:

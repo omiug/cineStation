@@ -52,6 +52,13 @@ class Cast{
      */
     protected $recompenses; 
 
+    /**
+     *
+     * @ORM\ManyToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media",  cascade={"persist"})
+     *
+     */
+    private $photo;
+
     public function __construct(){
         $this->participants = new ArrayCollection();
     }
@@ -123,5 +130,13 @@ class Cast{
     
     public function getRecompenses() {
         return $this->recompenses;
+    }
+
+    public function setPhoto($media) {
+        $this->photo = $media;
+    }
+
+    public function getPhoto() {
+        return $this->photo;
     }
 }

@@ -52,3 +52,12 @@ services:
             - ~
             - Cine\CinemaBundle\Entity\Genre
             - ~
+
+    sonata.admin.cin_cast:
+        class: Cine\CinemaBundle\Admin\CastAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Fiche", label: "Cast" }
+        arguments:
+            - ~
+            - Cine\CinemaBundle\Entity\Cast
+            - ~
