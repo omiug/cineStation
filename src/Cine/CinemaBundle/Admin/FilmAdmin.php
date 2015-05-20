@@ -9,19 +9,11 @@ use Sonata\AdminBundle\Form\FormMapper;
 class FilmAdmin extends CinemaAdmin
 {
 	protected function configureFormFields(FormMapper $FormMapper){
+        parent:: configureFormFields($FormMapper);
+        
 		$FormMapper
 			->tab("Description")
-				->with('Synopsis', array('class' => 'col-xs-5'))
-					->add('titre', 'text', array(
-						'label' => 'Titre du Film',
-						'required' => true
-					))
-					->add('synopsis', 'text', array(
-						'label' => 'Résumé objectif de l\'histoire',
-						'required' => true
-					))
-				->end()
-				->with('Médias', array('class' => 'col-xs-7'))
+				->with('Médias', array('class' => 'col-xs-5 col-sm-5 col-md-5'))
 					->add('poster', 'sonata_type_model_list', array('required' => false), array(
                         'link_parameters' => array('context' => 'default'),
                     ))
@@ -32,32 +24,9 @@ class FilmAdmin extends CinemaAdmin
 				->end()
 			->end()
 			->tab("Fiche Technique")
-				->with('Casting')
-					->add('anneeReal', 'datetime', array(
-						'label' => 'Date de sortie',
-						'required' => true
-					))
+				->with('Essentiel', array('class' => 'col-xs-6 col-sm-6 col-md-6'))
 					->add('genres', 'sonata_type_model', array(
 						'label' => 'Genre',
-						'required' => true
-					))
-					->add('pays', 'text', array(
-						'label' => 'Nationalité',
-						'required' => true
-					))
-					->add('budget', 'text', array(
-						'label' => 'Budget',
-						'required' => true
-					))
-					->add('recompenses', 'text', array(
-						'label' => 'Récompenses'
-					))
-					->add('budget', 'text', array(
-						'label' => 'Budget',
-						'required' => true
-					))
-					->add('dureeFilm', 'time', array(
-						'label' => 'Durée du film',
 						'required' => true
 					))
 				->end()

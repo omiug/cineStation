@@ -43,6 +43,11 @@ class Genre{
     	$this->cinemas = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return $this->nom;
+    }
+
     public function getId(){
         return $this->id;
     }

@@ -5,6 +5,7 @@ namespace Cine\CinemaBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\MappedSuperclass
@@ -20,21 +21,34 @@ abstract class Cinema {
     protected $id;
 
     /**
+     * @Assert\NotBlank()
+     * 
      * @ORM\Column(name="titre", type="string", length=50, nullable=false)
      */
     protected $titre; 
 
     /**
+     * @Assert\NotBlank()
+     * @Assert\Length(
+     *      max = 4,
+     *      min = 4,
+     *      exactMessage = "L'année doit être sur 4 chiffres"
+     * )
+     *
      * @ORM\Column(name="anneeReal", type="integer", length=4)
      */
     protected $anneeReal;
 
     /**
+     * @Assert\NotBlank()
+     * 
      * @ORM\Column(name="pays", type="string", length=30)
      */
     protected $pays;     
 
     /**
+     * @Assert\NotBlank()
+     * 
      * @ORM\Column(name="synopsis", type="text", length=255, nullable=false)
      */
     protected $synopsis;    
