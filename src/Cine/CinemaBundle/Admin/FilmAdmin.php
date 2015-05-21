@@ -27,10 +27,22 @@ class FilmAdmin extends CinemaAdmin
 				->with('Essentiel', array('class' => 'col-xs-6 col-sm-6 col-md-6'))
 					->add('genres', 'sonata_type_model', array(
 						'label' => 'Genre',
-						'required' => true
+						'required' => true,
+                        'multiple' => true
 					))
 				->end()
-			->end();
+				->with('Autre', array('class' => 'col-xs-6 col-sm-6 col-md-6'))
+					->add('recompenses', null, array(
+						'label' => 'Récompense',
+						'required' => false,
+                        'class' => 'CineCinemaBundle:Recompense',
+//                        'query_builder' => function(EntityRepository $er) {
+//                            return $er->createQueryBuilder('u')
+//                                ->orderBy('u.username', 'ASC');
+//                        },
+					))
+				->end()
+            ->end();
 //			->tab("Critique")
 //				->with('Avis Personnel', array('class'=> 'col-xs-4'))
 //					->add('critique', 'text', array(

@@ -3,6 +3,7 @@ namespace Cine\CinemaBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="Cine\CinemaBundle\Repository\FilmRepository")
@@ -10,6 +11,13 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class Film extends Cinema
 {
+
+
+    /**
+     * @ORM\OneToMany(targetEntity="FilmRecompense", mappedBy="film", cascade={"persist"})
+     */
+    protected $filmRecompenses;
+    
     /**
      * @ORM\ManyToMany(targetEntity="Cine\CinemaBundle\Entity\Genre", inversedBy="films")
      * @ORM\JoinTable(name="cin_film_genre")
@@ -20,7 +28,10 @@ class Film extends Cinema
      * @ORM\OneToMany(targetEntity="Cine\CinemaBundle\Entity\Participant", mappedBy="films")
      */
     protected $participants;
-    
+
+    /**
+     * @Assert\Url()
+     */
     protected $bandeAnnonce;
 
     /**

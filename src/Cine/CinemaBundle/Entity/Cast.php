@@ -8,7 +8,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 /**
  * @ORM\Entity(repositoryClass="Cine\CinemaBundle\Repository\CastRepository")
  * @ORM\Table(name="cin_cast")
- * @UniqueEntity("nom")
+ * @UniqueEntity("pseudo")
  */
 class Cast{
 

@@ -59,15 +59,9 @@ abstract class Cinema {
     protected $budget;  
 
     /**
-     * @ORM\Column(name="recompenses", type="array")
-     */
-    protected $recompenses;  
-
-    /**
      * @ORM\Column(name="actif", type="boolean")
      */
     protected $actif;
-
 
     public function __construct(){
         $this->genre = new ArrayCollection();

@@ -42,10 +42,6 @@ class CinemaAdmin extends Admin
 						'label' => 'Budget',
 						'required' => false
 					))
-					->add('recompenses', 'text', array(
-						'label' => 'Récompenses',
-						'required' => false
-					))
 				->end()
 
 			->end();
