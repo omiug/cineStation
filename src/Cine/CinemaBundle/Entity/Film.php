@@ -4,14 +4,30 @@ namespace Cine\CinemaBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="Cine\CinemaBundle\Repository\FilmRepository")
  * @ORM\Table(name="cin_film")
+ * @UniqueEntity("bandeAnnonce")
  */
 class Film extends Cinema
 {
+    /**
+     * @ORM\ManyToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media",  cascade={"persist"})
+     */
+    protected $poster;
 
+    /**
+     * @Assert\Url()
+     * @ORM\Column(name="bandeAnnonce", type="text", nullable=true)
+     */
+    protected $bandeAnnonce;
+    
+    /**
+     * @ORM\Column(name="dureeFilm", type="time",  nullable=false)
+     */
+    protected $dureeFilm;
 
     /**
      * @ORM\OneToMany(targetEntity="FilmRecompense", mappedBy="film", cascade={"persist"})
@@ -24,50 +40,31 @@ class Film extends Cinema
      */
     protected $genres;
 
+    
+    
+    
+    
+    
+    
     /**
      * @ORM\OneToMany(targetEntity="Cine\CinemaBundle\Entity\Participant", mappedBy="films")
      */
     protected $participants;
 
     /**
-     * @Assert\Url()
-     */
-    protected $bandeAnnonce;
-
-    /**
      * @ORM\ManyToMany(targetEntity="Cine\CinemaBundle\Entity\Festival", mappedBy="films")
      */
     protected $festivals;
-
-    /**
-     *
-     * @ORM\ManyToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media",  cascade={"persist"})
-     *
-     */
-    protected $poster;
-
-    /**
-     * @ORM\Column(name="critique", type="text", nullable=false)
-     */
-    protected $critique;
-
-    /**
-     * @ORM\Column(name="bonPoint", type="text", nullable=false)
-     */
-    protected $bonPoint;
-
-    /**
-     * @ORM\Column(name="mauvaisPoint", type="text", nullable=false)
-     */
-    protected $mauvaisPoint;
-
-    /**
-     * @ORM\Column(name="dureeFilm", type="time",  nullable=false)
-     */
-    protected $dureeFilm;
+    
+    
+    
+//    protected $critique;
+//    protected $bonPoint;
+//    protected $mauvaisPoint;
 
     public function __construct(){
     	$this->festivals = new ArrayCollection();
+        $this->filmRecompenses = new ArrayCollection();
     }
 
     public function setFestivals($festivals){
@@ -99,27 +96,6 @@ class Film extends Cinema
     }
     public function getPoster() {
         return $this->poster;
-    }
-
-    public function setCritique($critique) {
-        $this->critique = $critique;
-    }
-    public function getCritique() {
-        return $this->critique;
-    }
-
-    public function setBonPoint($bonPoint) {
-        $this->bonPoint = $bonPoint;
-    }
-    public function getBonPoint() {
-        return $this->bonPoint;
-    }
-
-    public function setMauvaisPoint($mauvaisPoint) {
-        $this->mauvaisPoint = $mauvaisPoint;
-    }
-    public function getMauvaisPoint() {
-        return $this->mauvaisPoint;
     }
 
     public function setGenres($genres) {
@@ -165,4 +141,21 @@ class Film extends Cinema
     public function getDureeFilm() {
         return $this->dureeFilm;
     }
+    
+    public function setFilmRecompenses($recomps){
+        foreach ($recomps as $rec) {
+            $this->addFilmRecompense($fest);
+        }
+    }
+    public function getFilmRecompenses() {
+        return $this->filmRecompenses;
+   }
+
+    public function addFilmRecompense(FilmRecompense $rec) {
+        $this->filmRecompenses[] = $rec;
+    }
+
+    public function removeFilmRecompense(FilmRecompense $rec) {
+        $this->filmRecompenses->removeElement($rec);
+    }    
 }

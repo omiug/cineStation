@@ -15,13 +15,13 @@ class FilmRecompense extends GlobalRecompense{
      * @ORM\ManyToOne(targetEntity="Film", inversedBy="filmRecompenses", cascade={"persist"})
      * @ORM\JoinColumn(name="film_id", referencedColumnName="id", nullable=false)
      */
-    private $cinema;
+    private $film;
 
-    public function setCinema(Cinema $cinema) {
-        $this->cinema = $cinema;
+    public function setFilm(Film $film) {
+        $this->film = $film;
     }
 
-    public function getCinema() {
-        return $this->cinema;
+    public function getFilm() {
+        return $this->film;
     }
 }

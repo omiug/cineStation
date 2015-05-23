@@ -3,6 +3,8 @@
 namespace Cine\CinemaBundle\Service;
 
 class RecompenseService {
+    private $em;
+
     private $types = array(
         'Humaine' => array(
             '1' => 'Acteur',
@@ -15,24 +17,22 @@ class RecompenseService {
             '6' => 'Court Métrage'
         )
     );
+    
+    public function __construct($em) {
+        $this->em = $em;
+    }
 
     public function getAllTypesRecompnseByGroups() {
         return $this->types;
     }
-
-    public function getTypesRecompenseCast() {
-        if ( isset($this->types['Humaine']) ) {
-            return $this->types['Humaine'];
-        }
-
-        return array();
+    
+    public function getAllCastRecompnse() {
+        return $this->em->getRepository('CineCinemaBundle:Recompense')
+            ->findAllByTypes(array(1, 2, 3));
     }
 
-    public function getTypesRecompenseCinema() {
-        if ( isset($this->types['Autre']) ) {
-            return $this->types['Autre'];
-        }
-
-        return array();
+    public function getAllRecompenseFilm() {
+        return $this->em->getRepository('CineCinemaBundle:Recompense')
+            ->findAllByTypes(array(4));
     }
 }

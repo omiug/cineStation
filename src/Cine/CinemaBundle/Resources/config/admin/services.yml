@@ -83,3 +83,14 @@ services:
             - ~
         calls:
             - [ setServRecompense, [ @cine_cine.recompense ]]
+            
+    sonata.admin.cin_film_recompense:
+        class: Cine\CinemaBundle\Admin\FilmRecompenseAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Fiche", label: "Film Récompense" }
+        arguments:
+            - ~
+            - Cine\CinemaBundle\Entity\FilmRecompense
+            - ~
+        calls:
+            - [ setServRecompense, [ @cine_cine.recompense ]]

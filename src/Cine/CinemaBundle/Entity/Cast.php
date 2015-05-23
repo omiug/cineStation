@@ -4,6 +4,7 @@ namespace Cine\CinemaBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="Cine\CinemaBundle\Repository\CastRepository")
@@ -20,27 +21,31 @@ class Cast{
     protected $id;
 
 	/**
+     * @Assert\NotBlank()
+     * 
      * @ORM\Column(name="nom", type="string", length=50, nullable=false)
      */
     protected $nom; 
 
     /**
+     * @Assert\NotBlank()
+     * 
      * @ORM\Column(name="prenom", type="string", length=50, nullable=false)
      */
     protected $prenom;
 
     /**
-     * @ORM\Column(name="pseudo", type="string", length=50)
+     * @ORM\Column(name="pseudo", type="string", length=50, nullable=true)
      */
     protected $pseudo; 
 
     /**
-     * @ORM\Column(name="dateNaissance", type="datetime")
+     * @ORM\Column(name="dateNaissance", type="datetime", nullable=true)
      */
     protected $dateNaissance; 
 
     /**
-     * @ORM\Column(name="nationalite", type="string", length=50)
+     * @ORM\Column(name="nationalite", type="string", length=50, nullable=true)
      */
     protected $nationalite;
 
@@ -53,7 +58,6 @@ class Cast{
      * @ORM\OneToMany(targetEntity="CastRecompense", mappedBy="cast", cascade={"persist"})
      */
     protected $castRecompenses;
-
 
     /**
      * @ORM\ManyToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media",  cascade={"persist"})
@@ -102,7 +106,7 @@ class Cast{
         return $this->pseudo;
     }
 
-    public function setDateNaissance(\DateTime $dateNaissance) {
+    public function setDateNaissance(\DateTime $dateNaissance=null) {
         $this->dateNaissance = $dateNaissance;
     }
 

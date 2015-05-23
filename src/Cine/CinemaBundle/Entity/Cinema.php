@@ -35,14 +35,12 @@ abstract class Cinema {
      *      exactMessage = "L'année doit être sur 4 chiffres"
      * )
      *
-     * @ORM\Column(name="anneeReal", type="integer", length=4)
+     * @ORM\Column(name="anneeReal", type="integer", length=4, nullable=false)
      */
     protected $anneeReal;
 
     /**
-     * @Assert\NotBlank()
-     * 
-     * @ORM\Column(name="pays", type="string", length=30)
+     * @ORM\Column(name="pays", type="string", length=30, nullable=true)
      */
     protected $pays;     
 
@@ -54,7 +52,7 @@ abstract class Cinema {
     protected $synopsis;    
 
     /**
-     * @ORM\Column(name="budget", type="float")
+     * @ORM\Column(name="budget", type="float", nullable=true)
      */
     protected $budget;  
 
@@ -67,6 +65,9 @@ abstract class Cinema {
         $this->genre = new ArrayCollection();
         $this->participant = new ArrayCollection();
         $this->actif = true;
+        
+        $dateTime = new \DateTime();
+        $this->anneeReal = $dateTime->format('Y');
     }
     
     public function getId() {

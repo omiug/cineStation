@@ -43,6 +43,9 @@ class CastAdmin extends Admin
                 ->add('castRecompenses', 'sonata_type_collection', array(
                     'label' => 'Récompenses',
                     'required' => false
+                ), array(
+                    'edit' => 'inline',
+                    'inline' => 'table'
                 ))
             ->end();
     }
@@ -62,4 +65,20 @@ class CastAdmin extends Admin
             ->add('pseudo')
             ->add('nationalite');
     }
+    
+    public function prePersist($object) {
+        parent::preUpdate($object);
+        
+        foreach ( $object->getCastRecompenses() as $cast ) {
+            $cast->setCast($object);
+        }
+    }
+    
+    public function preUpdate($object) {
+        parent::preUpdate($object);
+        
+        foreach ( $object->getCastRecompenses() as $cast ) {
+            $cast->setCast($object);
+        }
+    }    
 }

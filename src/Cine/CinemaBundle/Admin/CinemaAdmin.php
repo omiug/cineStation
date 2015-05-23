@@ -22,7 +22,8 @@ class CinemaAdmin extends Admin
 						'required' => true
 					))
 					->add('actif', null, array(
-						'label' => 'Actif'
+						'label' => 'Actif',
+						'required' => false
 					))
 				->end()
 			->end()
@@ -32,12 +33,12 @@ class CinemaAdmin extends Admin
 						'label' => 'Date de sortie',
 						'required' => true,
                     ))
-					->add('pays', 'country', array(
-						'label' => 'Nationalité',
-						'required' => true
-					))
 				->end()
 				->with('Autre', array('class' => 'col-xs-6 col-sm-6 col-md-6'))
+					->add('pays', 'country', array(
+						'label' => 'Nationalité',
+						'required' => false
+					))
 					->add('budget', 'text', array(
 						'label' => 'Budget',
 						'required' => false

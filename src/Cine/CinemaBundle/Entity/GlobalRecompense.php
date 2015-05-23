@@ -38,6 +38,12 @@ class GlobalRecompense {
      * @ORM\Column(name="annee", type="integer", length=4)
      */
     protected $annee;
+    
+    
+    public function __construct() {
+        $dateTime = new \DateTime();
+        $this->annee = intval($dateTime->format('Y'));
+    }
 
     public function setRecompense(Recompense $rec) {
         $this->recompense = $rec;

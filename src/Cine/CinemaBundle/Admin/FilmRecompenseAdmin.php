@@ -7,7 +7,7 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 
-class CastRecompenseAdmin extends Admin
+class FilmRecompenseAdmin extends Admin
 {
     private $servRecompense;
 
@@ -16,7 +16,7 @@ class CastRecompenseAdmin extends Admin
     }
 
     protected function configureFormFields(FormMapper $FormMapper){
-        $choices = $this->servRecompense->getAllCastRecompnse();
+        $choices = $this->servRecompense->getAllRecompenseFilm();
 
         $FormMapper
             ->with('Général')
