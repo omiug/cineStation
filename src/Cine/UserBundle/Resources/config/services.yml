@@ -7,10 +7,12 @@ services:
 
     cine_user.registration.listener:
         class: Cine\UserBundle\Service\RegisterListener
-        arguments: [@cine_user.groupe]
+        arguments:
+            - @cine_user.manager.groupe
         tags:
-              - { name: kernel.event_listener, event: fos_user.registration.completed, method: registerCompleted }
+            - { name: kernel.event_listener, event: fos_user.registration.completed, method: registerCompleted }
 
-    cine_user.groupe:
-        class: Cine\UserBundle\Service\GroupeService
-        arguments: [@doctrine.orm.entity_manager]
+    cine_user.manager.groupe:
+        class: Cine\UserBundle\Service\GroupeManager
+        arguments:
+             - @doctrine.orm.entity_manager

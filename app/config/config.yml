@@ -131,3 +131,15 @@ sonata_media:
     providers:
         image:
             resizer: sonata.media.resizer.square
+          
+#sonata_formatter:
+#    ckeditor:
+#        templates:
+#            browser: 'SonataFormatterBundle:Ckeditor:browser.html.twig'
+#            upload: 'SonataFormatterBundle:Ckeditor:upload.html.twig'
+            
+ivory_ck_editor:
+    default_config: adminLight
+    configs:
+        adminLight:
+            toolbar: [ [ "Cut", "-", "Copy", "PasteText" ], [ "Bold", "Italic", "Strike", "-", "RemoveFormat" ] ]

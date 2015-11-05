@@ -2,22 +2,22 @@
 
 namespace Cine\CinemaBundle\Admin;
 
+use Cine\CinemaBundle\Service\RecompenseManager;
 use Sonata\AdminBundle\Admin\Admin;
-use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
+use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 
 class FilmRecompenseAdmin extends Admin
 {
-    private $servRecompense;
+    protected $recompenseManager;
 
-    public function setServRecompense($serv) {
-        $this->servRecompense = $serv;
+    public function setMangerRecompense(RecompenseManager $serv) {
+        $this->recompenseManager = $serv;
     }
 
     protected function configureFormFields(FormMapper $FormMapper){
-        $choices = $this->servRecompense->getAllRecompenseFilm();
-
+        $choices = $this->recompenseManager->getAllRecompenseFilm();
         $FormMapper
             ->with('Général')
                 ->add('recompense', null, array(

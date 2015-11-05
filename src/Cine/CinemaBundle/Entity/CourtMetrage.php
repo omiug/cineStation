@@ -5,8 +5,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * @ORM\Entity(repositoryClass="Cine\CinemaBundle\Repository\CourtMetrageRepository")
- * @ORM\Table(name="cin_cm")
+ * @ORM\Entity
  */
 class CourtMetrage extends Cinema
 {
@@ -29,10 +28,18 @@ class CourtMetrage extends Cinema
      * @ORM\ManyToMany(targetEntity="Cine\CinemaBundle\Entity\Festival", mappedBy="courtMetrages")
      */
     protected $festivals;  
+    
+    /**
+     * @ORM\OneToMany(targetEntity="Cine\CmsBundle\Entity\Article", mappedBy="courtMetrage", cascade={"persist"})
+     */
+    protected $articles;
 
     protected $videocm; 
 
     public function __construct(){
+        parent::__construct();
+
+        $this->articles = new ArrayCollection();
         $this->festivals = new ArrayCollection();
     }
 
@@ -101,5 +108,23 @@ class CourtMetrage extends Cinema
 
     public function removeParticipant(Participant $membre) {
         $this->participants->removeElement($membre);
+    }    
+    
+    public function addArticle(\Cine\CmsBundle\Entity\Article $article) {
+        $this->articles[] = $article;
     }
+    
+    public function setArticles($articles) {
+        foreach ( $artciles as $article ) {
+            $this->addArticle($article);
+        }
+    }
+    
+    public function getArticle() {
+        return $this->articles;
+    }
+    
+    public function removeArticles(\Cine\CmsBundle\Entity\Article $article) {
+         $this->articles->removeElement($article);
+   }
 }

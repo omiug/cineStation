@@ -30,7 +30,7 @@ class FilmAdmin extends CinemaAdmin
 			->tab("Fiche Technique")
 				->with('Essentiel', array('class' => 'col-xs-6 col-sm-6 col-md-6'))
                     ->add('dureeFilm', null, array(
-                        'label' => 'Durée',
+                        'label' => 'Durée en minute',
 						'required' => true
                     ))
 					->add('genres', 'sonata_type_model', array(

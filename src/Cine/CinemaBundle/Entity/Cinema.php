@@ -8,10 +8,14 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\MappedSuperclass
+ * @ORM\Entity
+ * @ORM\Table(name="cine_cinema")
+ * @ORM\InheritanceType("SINGLE_TABLE")
+ * @ORM\DiscriminatorColumn(name="discr", type="string")
+ * @ORM\DiscriminatorMap({"film" = "Film", "cm" = "CourtMetrage", "serie" = "Serie"})
  * @UniqueEntity("titre")
- */
-abstract class Cinema {
+ **/
+class Cinema {
     
     /**
      * @ORM\Id
@@ -114,19 +118,11 @@ abstract class Cinema {
         return $this->budget;
     }
 
-    public function setRecompenses($recompenses) {
-        $this->recompenses = $recompenses;
-    }
-
-    public function getRecompenses() {
-        return $this->recompenses;
-    }
-
     public function setActif($actif) {
         $this->actif = $actif;
     }
 
     public function getActif() {
         return $this->actif;
-    }
+    }    
 }

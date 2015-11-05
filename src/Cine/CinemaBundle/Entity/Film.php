@@ -7,8 +7,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
- * @ORM\Entity(repositoryClass="Cine\CinemaBundle\Repository\FilmRepository")
- * @ORM\Table(name="cin_film")
+ * @ORM\Entity
  * @UniqueEntity("bandeAnnonce")
  */
 class Film extends Cinema
@@ -25,14 +24,9 @@ class Film extends Cinema
     protected $bandeAnnonce;
     
     /**
-     * @ORM\Column(name="dureeFilm", type="time",  nullable=false)
+     * @ORM\Column(name="dureeFilm", type="integer",  nullable=false)
      */
     protected $dureeFilm;
-
-    /**
-     * @ORM\OneToMany(targetEntity="FilmRecompense", mappedBy="film", cascade={"persist"})
-     */
-    protected $filmRecompenses;
     
     /**
      * @ORM\ManyToMany(targetEntity="Cine\CinemaBundle\Entity\Genre", inversedBy="films")
@@ -40,12 +34,6 @@ class Film extends Cinema
      */
     protected $genres;
 
-    
-    
-    
-    
-    
-    
     /**
      * @ORM\OneToMany(targetEntity="Cine\CinemaBundle\Entity\Participant", mappedBy="films")
      */
@@ -56,22 +44,31 @@ class Film extends Cinema
      */
     protected $festivals;
     
+    /**
+     * @ORM\OneToMany(targetEntity="CineRecompense", mappedBy="film", cascade={"persist"})
+     */
+    protected $filmRecompenses;
     
-    
-//    protected $critique;
-//    protected $bonPoint;
-//    protected $mauvaisPoint;
+    /**
+     * @ORM\OneToMany(targetEntity="Cine\CmsBundle\Entity\Article", mappedBy="film", cascade={"persist"})
+     */
+    protected $articles;
 
     public function __construct(){
+        parent::__construct();
+        
+    	$this->articles = new ArrayCollection();
     	$this->festivals = new ArrayCollection();
-        $this->filmRecompenses = new ArrayCollection();
+        $this->dureeFilm = 120;
     }
 
     public function setFestivals($festivals){
         foreach ($festivals as $fest) {
             $this->addFestival($fest);
         }
+        return $this;
     }
+    
     public function getFestivals() {
         return $this->festivals;
    }
@@ -86,6 +83,7 @@ class Film extends Cinema
 
     public function setBandeAnnonce($bandeAnnonce) {
         $this->bandeAnnonce = $bandeAnnonce;
+        return $this;
     }
     public function getBandeAnnonce() {
         return $this->bandeAnnonce;
@@ -93,7 +91,9 @@ class Film extends Cinema
 
     public function setPoster($poster) {
         $this->poster = $poster;
+        return $this;
     }
+
     public function getPoster() {
         return $this->poster;
     }
@@ -102,6 +102,7 @@ class Film extends Cinema
         foreach ($genres as $gre) {
             $this->addGenre($gre);
         }
+        return $this;
     }
 
     public function getGenres() {
@@ -120,6 +121,7 @@ class Film extends Cinema
         foreach ($participants as $membre) {
             $this->addParticipant($membre);
         }
+        return $this;
     }
 
     public function getParticipants() {
@@ -141,21 +143,41 @@ class Film extends Cinema
     public function getDureeFilm() {
         return $this->dureeFilm;
     }
-    
-    public function setFilmRecompenses($recomps){
-        foreach ($recomps as $rec) {
-            $this->addFilmRecompense($fest);
+
+    public function setFilmRecompenses($recompenses) {
+        foreach ( $recompenses as $rec ) {
+            $this->addFilmRecompense($rec);
         }
+        return $this;
     }
+
     public function getFilmRecompenses() {
         return $this->filmRecompenses;
-   }
+    }
 
-    public function addFilmRecompense(FilmRecompense $rec) {
+    public function addFilmRecompense(CineRecompense $rec) {
         $this->filmRecompenses[] = $rec;
     }
 
-    public function removeFilmRecompense(FilmRecompense $rec) {
+    public function removeFilmRecompense(CineRecompense $rec) {
         $this->filmRecompenses->removeElement($rec);
-    }    
+    }
+    
+    public function addArticle(\Cine\CmsBundle\Entity\Article $article) {
+        $this->articles[] = $article;
+    }
+    
+    public function setArticles($articles) {
+        foreach ( $artciles as $article ) {
+            $this->addArticle($article);
+        }
+    }
+    
+    public function getArticle() {
+        return $this->articles;
+    }
+    
+    public function removeArticles(\Cine\CmsBundle\Entity\Article $article) {
+         $this->articles->removeElement($article);
+   }
 }

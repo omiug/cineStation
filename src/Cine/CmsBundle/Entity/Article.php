@@ -67,8 +67,24 @@ class Article
     private $auteur;
 
 
-    private $cinema;
-
+    /**
+     * @ORM\ManyToOne(targetEntity="Cine\CinemaBundle\Entity\Film", inversedBy="articles")
+     * @ORM\JoinColumn(name="film_id", referencedColumnName="id")
+     */
+    private $film;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="Cine\CinemaBundle\Entity\Serie", inversedBy="articles")
+     * @ORM\JoinColumn(name="serie_id", referencedColumnName="id")
+     */
+    private $serie;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="Cine\CinemaBundle\Entity\CourtMetrage", inversedBy="articles")
+     * @ORM\JoinColumn(name="cm_id", referencedColumnName="id")
+     */
+    private $courtMetrage;
+    
     /**
      * @ORM\Column(name="dateCreation", type="datetime")
      */
@@ -84,89 +100,114 @@ class Article
      */
     private $dateSuppr;
 
-    public function getId() {
-        return $this->id;
-    }
-
-    public function setContenu($contenu) {
-        $this->contenu = $contenu;
+    public function getTitre() {
+        return $this->titre;
     }
 
     public function getContenu() {
         return $this->contenu;
     }
 
-    public function setBonsPoints(array $ar) {
-        $this->bonsPoints = $ar;
-    }
-
     public function getBonsPoints() {
         return $this->bonsPoints;
-    }
-
-    public function setMauvaisPoints(array $ar) {
-        $this->mauvaisPoints = $ar;
     }
 
     public function getMauvaisPoints() {
         return $this->mauvaisPoints;
     }
 
-    public function setCptLike($cpt) {
-        $this->cptLike = $cpt;
-    }
-
     public function getCptLike() {
         return $this->cptLike;
-    }
-
-    public function setTitre($titre) {
-        $this->titre = $titre;
-    }
-
-    public function getTitre() {
-        return $this->titre;
-    }
-
-    public function setDateSuppr($dateSuppr)
-    {
-        $this->dateSuppr = $dateSuppr;
-    }
-
-    public function getDateSuppr()
-    {
-        return $this->dateSuppr;
-    }
-
-    public function setAuteur(User $user) {
-        $this->auteur = $user;
     }
 
     public function getAuteur() {
         return $this->auteur;
     }
-    
-    public function setDateCreation($date) {
-        $this->dateCreation = $date;
+
+    public function getFilm() {
+        return $this->film;
+    }
+
+    public function getSerie() {
+        return $this->serie;
+    }
+
+    public function getCourtMetrage() {
+        return $this->courtMetrage;
     }
 
     public function getDateCreation() {
         return $this->dateCreation;
     }
 
-    public function setDateModification($date) {
-        $this->dateModification = $date;
-    }
-
     public function getDateModification() {
         return $this->dateModification;
     }
 
-    public function setCinema(Cinema $cinema) {
-        $this->cinema = $cinema;
+    public function getDateSuppr() {
+        return $this->dateSuppr;
     }
 
-    public function getCinema() {
-        return $this->cinema;
+    public function setTitre($titre) {
+        $this->titre = $titre;
+        return $this;
     }
+
+    public function setContenu($contenu) {
+        $this->contenu = $contenu;
+        return $this;
+    }
+
+    public function setBonsPoints($bonsPoints) {
+        $this->bonsPoints = $bonsPoints;
+        return $this;
+    }
+
+    public function setMauvaisPoints($mauvaisPoints) {
+        $this->mauvaisPoints = $mauvaisPoints;
+        return $this;
+    }
+
+    public function setCptLike($cptLike) {
+        $this->cptLike = $cptLike;
+        return $this;
+    }
+
+    public function setAuteur(User $auteur) {
+        $this->auteur = $auteur;
+        return $this;
+    }
+
+    public function setFilm(\Cine\CinemaBundle\Entity\Film $film) {
+        $this->film = $film;
+        return $this;
+    }
+
+    public function setSerie(\Cine\CinemaBundle\Entity\Serie $serie) {
+        $this->serie = $serie;
+        return $this;
+    }
+
+    public function setCourtMetrage(\Cine\CinemaBundle\Entity\CourtMetrage $courtMetrage) {
+        $this->courtMetrage = $courtMetrage;
+        return $this;
+    }
+
+    public function setDateCreation(\DateTime $dateCreation) {
+        $this->dateCreation = $dateCreation;
+        return $this;
+    }
+
+    public function setDateModification(\DateTime $dateModification) {
+        $this->dateModification = $dateModification;
+        return $this;
+    }
+
+    public function setDateSuppr($dateSuppr) {
+        $this->dateSuppr = $dateSuppr;
+        return $this;
+    }
+
+
+    
 }

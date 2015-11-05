@@ -9,14 +9,14 @@ use Sonata\AdminBundle\Form\FormMapper;
 
 class RecompenseAdmin extends Admin
 {
-    private $servRecompense;
+    protected $recompenseManager;
 
-    public function setServRecompense($serv) {
-        $this->servRecompense = $serv;
+    public function setMangerRecompense(\Cine\CinemaBundle\Service\RecompenseManager $serv) {
+        $this->recompenseManager = $serv;
     }
 
     protected function configureFormFields(FormMapper $FormMapper){
-        $choices = $this->servRecompense->getAllTypesRecompnseByGroups();
+        $choices = $this->recompenseManager->getAllTypesRecompnseByGroups();
         
         $FormMapper
             ->with('Général')

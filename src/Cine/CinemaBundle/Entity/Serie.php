@@ -2,10 +2,10 @@
 namespace Cine\CinemaBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * @ORM\Entity(repositoryClass="Cine\CinemaBundle\Repository\SerieRepository")
- * @ORM\Table(name="cin_serie")
+ * @ORM\Entity
  */
 class Serie extends Cinema{
     /**
@@ -31,6 +31,17 @@ class Serie extends Cinema{
      * @ORM\OneToMany(targetEntity="Cine\CinemaBundle\Entity\Participant", mappedBy="series")
      */
     protected $participants;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="Cine\CmsBundle\Entity\Article", mappedBy="serie", cascade={"persist"})
+     */
+    protected $articles;
+
+    public function __construct() {
+        parent::__construct();
+
+        $this->articles = new ArrayCollection();
+    }
 
     public function setFormatTemp($formatTemp) {
         $this->formatTemp = $formatTemp;
@@ -91,4 +102,22 @@ class Serie extends Cinema{
     public function removeParticipant(Participant $membre) {
         $this->participants->removeElement($membre);
     }
+    
+    public function addArticle(\Cine\CmsBundle\Entity\Article $article) {
+        $this->articles[] = $article;
+    }
+    
+    public function setArticles($articles) {
+        foreach ( $artciles as $article ) {
+            $this->addArticle($article);
+        }
+    }
+    
+    public function getArticle() {
+        return $this->articles;
+    }
+    
+    public function removeArticles(\Cine\CmsBundle\Entity\Article $article) {
+         $this->articles->removeElement($article);
+   }    
 }

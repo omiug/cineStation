@@ -22,9 +22,9 @@ sonata_admin:
                 label: Cinema
                 items:
                     - sonata.admin.cin_film
-                    - sonata.admin.cin_serie
-                    - sonata.admin.cin_cm
-                    - sonata.admin.cin_fest
+#                    - sonata.admin.cin_serie
+#                    - sonata.admin.cin_cm
+#                    - sonata.admin.cin_fest
                     - sonata.admin.cin_cast
                     - sonata.admin.cin_recompense
                     - sonata.admin.cin_genre

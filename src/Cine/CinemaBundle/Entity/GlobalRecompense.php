@@ -6,7 +6,11 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\MappedSuperclass
+ * @ORM\Entity
+ * @ORM\Table(name="cine_recompense_asso")
+ * @ORM\InheritanceType("SINGLE_TABLE")
+ * @ORM\DiscriminatorColumn(name="discr", type="string")
+ * @ORM\DiscriminatorMap({"cine" = "CineRecompense", "cast" = "CastRecompense"})
  */
 class GlobalRecompense {
 
@@ -22,7 +26,7 @@ class GlobalRecompense {
     /**
      * @var integer
      *
-     * @ORM\ManyToOne(targetEntity="Recompense", inversedBy="castRecompenses")
+     * @ORM\ManyToOne(targetEntity="Recompense", inversedBy="globalRecompenses")
      * @ORM\JoinColumn(name="recompense_id", referencedColumnName="id", nullable=false)
      */
     private $recompense;

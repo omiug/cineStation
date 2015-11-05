@@ -17,10 +17,20 @@ class CinemaAdmin extends Admin
 						'label' => 'Titre',
 						'required' => true
 					))
-					->add('synopsis', 'textarea', array(
+					->add('synopsis', 'ckeditor', array(
 						'label' => 'Résumé objectif de l\'histoire',
-						'required' => true
+						'required' => true,
+                        'config_name' => 'adminLight',
 					))
+//					->add('synopsis', 'sonata_formatter_type', array(
+//    'source_field'         => 'rawDescription',
+//    'source_field_options' => array('attr' => array('class' => 'span10', 'rows' => 20)),
+//    'format_field'         => 'descriptionFormatter',
+//    'target_field'         => 'description',
+//    'ckeditor_context'     => 'default',
+//    'event_dispatcher'     => $formMapper->getFormBuilder()->getEventDispatcher()
+//))
+            
 					->add('actif', null, array(
 						'label' => 'Actif',
 						'required' => false
@@ -30,7 +40,7 @@ class CinemaAdmin extends Admin
 			->tab("Fiche Technique")
 				->with('Essentiel', array('class' => 'col-xs-6 col-sm-6 col-md-6'))
 					->add('anneeReal', null, array(
-						'label' => 'Date de sortie',
+						'label' => 'Année de sortie',
 						'required' => true,
                     ))
 				->end()

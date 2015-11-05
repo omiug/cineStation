@@ -12,7 +12,8 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 
 class Groupe extends BaseGroupe {
-
+    const DEFAULT_GROUPE = 2;
+    
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
@@ -28,6 +29,7 @@ class Groupe extends BaseGroupe {
 
     public function __construct($name, $roles = array()) {
         parent::__construct($name, $roles);
+        
         $this->users = new ArrayCollection();
     }
 
@@ -37,6 +39,8 @@ class Groupe extends BaseGroupe {
 
     public function setUsers($users){
         $this->users=$users;
+        
+        return $this;
     }
 
     public function getUsers(){

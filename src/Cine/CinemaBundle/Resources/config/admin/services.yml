@@ -71,7 +71,7 @@ services:
             - Cine\CinemaBundle\Entity\Recompense
             - ~
         calls:
-            - [ setServRecompense, [ @cine_cine.recompense ]]
+            - [ setMangerRecompense, [ @cine_cine.manager.recompense ]]
 
     sonata.admin.cin_cast_recompense:
         class: Cine\CinemaBundle\Admin\CastRecompenseAdmin
@@ -82,7 +82,7 @@ services:
             - Cine\CinemaBundle\Entity\CastRecompense
             - ~
         calls:
-            - [ setServRecompense, [ @cine_cine.recompense ]]
+            - [ setMangerRecompense, [ @cine_cine.manager.recompense ]]
             
     sonata.admin.cin_film_recompense:
         class: Cine\CinemaBundle\Admin\FilmRecompenseAdmin
@@ -90,7 +90,7 @@ services:
             - { name: sonata.admin, manager_type: orm, group: "Fiche", label: "Film Récompense" }
         arguments:
             - ~
-            - Cine\CinemaBundle\Entity\FilmRecompense
+            - Cine\CinemaBundle\Entity\CineRecompense
             - ~
         calls:
-            - [ setServRecompense, [ @cine_cine.recompense ]]
+            - [ setMangerRecompense, [ @cine_cine.manager.recompense ]]

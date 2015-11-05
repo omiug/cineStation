@@ -1,4 +1,4 @@
 services:
-    cine_cine.recompense:
-        class: Cine\CinemaBundle\Service\RecompenseService
+    cine_cine.manager.recompense:
+        class: Cine\CinemaBundle\Service\RecompenseManager
         arguments: [@doctrine.orm.entity_manager]

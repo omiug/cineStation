@@ -6,14 +6,13 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Table(name="cin_film_recompense")
- * @ORM\Entity(repositoryClass="Cine\CinemaBundle\Repository\CastRecompenseRepository")
+ * @ORM\Entity
  */
-class FilmRecompense extends GlobalRecompense{
+class CineRecompense extends GlobalRecompense{
     /**
      * @var integer
      * @ORM\ManyToOne(targetEntity="Film", inversedBy="filmRecompenses", cascade={"persist"})
-     * @ORM\JoinColumn(name="film_id", referencedColumnName="id", nullable=false)
+     * @ORM\JoinColumn(name="film_id", referencedColumnName="id", nullable=true)
      */
     private $film;
 

@@ -30,9 +30,9 @@ class Recompense{
     protected $type;
 
     /**
-     * @ORM\OneToMany(targetEntity="CastRecompense", mappedBy="recompense", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="GlobalRecompense", mappedBy="recompense", cascade={"persist"})
      */
-    protected $castRecompenses;
+    protected $globalRecompenses;
 
     public function __toString()
     {
@@ -59,7 +59,7 @@ class Recompense{
         return $this->type;
     }
 
-    public function getCastRecompenses() {
-        return $this->castRecompenses;
+    public function getGlobalRecompenses() {
+        return $this->globalRecompenses;
     }
 }
