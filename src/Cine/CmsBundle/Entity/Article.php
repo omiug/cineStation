@@ -100,6 +100,10 @@ class Article
      */
     private $dateSuppr;
 
+    public function getId() {
+        return $this->id;
+    }
+   
     public function getTitre() {
         return $this->titre;
     }

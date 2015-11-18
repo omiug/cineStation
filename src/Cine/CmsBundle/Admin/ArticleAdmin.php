@@ -47,12 +47,18 @@ class ArticleAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $choices = $this->constructChoicesArray();
-
+        
+        $disabled = false;
+        if ( $this->getSubject()->getId() ) {
+            $disabled = true;
+        }
+        
         $formMapper
-            ->with('Général')
+            ->with('Général', array('class' => 'col-xs-9 col-sm-9 col-md-9'))
                 ->add('cinema', 'choice', array(
                     'mapped' => false,
-                    'choices' => $choices
+                    'choices' => $choices,
+                    'disabled' => $disabled
                 ))
                 ->add('titre', null, array(
                     'label' => 'Titre de l\'article'
@@ -63,14 +69,43 @@ class ArticleAdmin extends Admin
                         'class' => 'ckeditor'
                     )
                 ))
-                ->add('bonsPoints', null, array(
-                    'label' => 'Bons Points',
-                    'required' => false
-                ))
-                ->add('mauvaisPoints', null, array(
-                    'label' => 'Mauvais Points',
-                    'required' => false
-                ))
+            ->end();
+        
+        $bonPoints = $this->getSubject()->getBonsPoints();
+        $formMapper
+            ->with('Mes bons points', array('class' => 'col-xs-3 col-sm-3 col-md-3'));
+            for ($i=0; $i<5; $i++) {
+                $formMapper
+                    ->add('bonsPoint_' . $i, 'text', array(
+                        'mapped' => false,
+                        'label' => false,
+                        'required' => false,
+                        'attr' => array(
+                            'placeholder' => 'Bon point ' . intval($i +1),
+                        ),
+                        'data' => isset($bonPoints[$i]) ? $bonPoints[$i] : ''
+                    ));
+            }
+        $formMapper
+            ->end();
+
+        $mauvaisPoints = $this->getSubject()->getMauvaisPoints();
+        $formMapper
+            ->with('Mes mauvais points', array('class' => 'col-xs-3 col-sm-3 col-md-3'));
+            for ($i=0; $i<5; $i++) {
+                $formMapper
+                    ->add('mauvaisPoint_' . $i, 'text', array(
+                        'mapped' => false,
+                        'label' => false,
+                        'required' => false,
+                        'attr' => array(
+                            'placeholder' => 'Mauvais point ' . intval($i +1),
+                        ),
+                        'data' => isset($mauvaisPoints[$i]) ? $mauvaisPoints[$i] : ''
+                    ));
+            }
+        $formMapper
+            ->end()
             ->end();
     }
 
@@ -115,11 +150,45 @@ class ArticleAdmin extends Admin
         } elseif ($cinema instanceof CourtMetrage ) {
             $object->setCourtMetrage($cinema);
         }
+        
+        $bonPoints = array();
+        $mauvaisPoints = array();
+        for ($i=0; $i<5; $i++) {
+            $data = $this->getForm()->get('bonsPoint_' . $i)->getData();
+            if ( $data ) {
+                $bonPoints[] = $data;
+            }
+
+            $data = $this->getForm()->get('mauvaisPoint_' . $i)->getData();
+            if ( $data ) {
+                $mauvaisPoints[] = $data;
+            }
+        }
+        
+        $object->setBonsPoints($bonPoints);
+        $object->setMauvaisPoints($mauvaisPoints);
     }
 
     public function preUpdate($object)
     {
         $object->setDateModification(new DateTime());
+
+        $bonPoints = array();
+        $mauvaisPoints = array();
+        for ($i=0; $i<5; $i++) {
+            $data = $this->getForm()->get('bonsPoint_' . $i)->getData();
+            if ( $data ) {
+                $bonPoints[] = $data;
+            }
+
+            $data = $this->getForm()->get('mauvaisPoint_' . $i)->getData();
+            if ( $data ) {
+                $mauvaisPoints[] = $data;
+            }
+        }
+        
+        $object->setBonsPoints($bonPoints);
+        $object->setMauvaisPoints($mauvaisPoints);        
     }
     
     private function constructChoicesArray() {
