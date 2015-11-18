@@ -49,26 +49,6 @@ class FilmAdmin extends CinemaAdmin
                     ))
 				->end()
             ->end();
-//			->tab("Critique")
-//				->with('Avis Personnel', array('class'=> 'col-xs-4'))
-//					->add('critique', 'text', array(
-//							'label' => 'Critique',
-//							'required' => true
-//					))
-//				->end()
-//				->with('Synthèse Positive', array('class'=> 'col-xs-4'))
-//					->add('bonPoint', 'text', array(
-//							'label' => 'Bon Point',
-//							'required' => true
-//					))
-//				->end()
-//				->with('Synthèse Négative', array('class'=> 'col-xs-4'))
-//					->add('mauvaisPoint', 'text', array(
-//							'label' => 'Mauvais Point',
-//							'required' => true
-//					))
-//				->end()
-//			->end();
 	}
 
 	protected function configureDatagridFilters(DatagridMapper $datagridMapper) {

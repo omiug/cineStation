@@ -37,4 +37,8 @@ services:
              - Cine\CmsBundle\Entity\Article
              - ~
         calls:
+            - [ setFilmManager, [ @cine_cine.manager.film ]]
+            - [ setSerieManager, [ @cine_cine.manager.serie ]]
+            - [ setCourtMetrageManager, [ @cine_cine.manager.courtMetrage ]]
+            - [ setCinemaManager, [@cine_cine.manager.cinemaManager] ]
             - [ setSecurityContext, [ @security.context ]]

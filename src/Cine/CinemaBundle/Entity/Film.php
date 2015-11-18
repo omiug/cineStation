@@ -168,12 +168,12 @@ class Film extends Cinema
     }
     
     public function setArticles($articles) {
-        foreach ( $artciles as $article ) {
+        foreach ( $articles as $article ) {
             $this->addArticle($article);
         }
     }
     
-    public function getArticle() {
+    public function getArticles() {
         return $this->articles;
     }
     

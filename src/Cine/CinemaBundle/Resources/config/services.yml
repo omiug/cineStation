@@ -1,4 +1,25 @@
 services:
     cine_cine.manager.recompense:
         class: Cine\CinemaBundle\Service\RecompenseManager
-        arguments: [@doctrine.orm.entity_manager]
+        arguments: 
+            - @doctrine.orm.entity_manager
+        
+    cine_cine.manager.film:
+        class: Cine\CinemaBundle\Service\FilmManager
+        arguments:
+            - @doctrine.orm.entity_manager
+                    
+    cine_cine.manager.serie:
+        class: Cine\CinemaBundle\Service\SerieManager
+        arguments:
+            - @doctrine.orm.entity_manager
+                    
+    cine_cine.manager.courtMetrage:
+        class: Cine\CinemaBundle\Service\CourtMetrageManager
+        arguments:
+            - @doctrine.orm.entity_manager
+                                
+    cine_cine.manager.cinemaManager:
+        class: Cine\CinemaBundle\Service\CinemaManager
+        arguments:
+            - @doctrine.orm.entity_manager
