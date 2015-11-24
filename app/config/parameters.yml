@@ -14,6 +14,7 @@ parameters:
     secret: ThisTokenIsNotSoSecretChangeIt
     allAdminSecurityRoles:
         - ROLE_USER
+        - ROLE_ADMIN_REDACTEUR
         - ROLE_ADMIN
     domaine_name: www.cinestation.com
     menu_principal: 1
